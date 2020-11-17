@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Image;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Validator;
+use App\Http\Requests\StoreProductRequest;
 
 
 class ProductController extends Controller
@@ -44,7 +47,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         //        $image = Image::find(5);
         // $product = Product::find(2);
@@ -101,19 +104,22 @@ class ProductController extends Controller
                 'origin_price' => 'required|numeric',
                 'sale_price'   => 'required|numeric',
                 'discount_price' => 'required|numeric',
-                'content' => 'required'
+                'content' => 'required',
+                'image[]' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
             ],
             [
                 'required' => ':attribute Không được để trống',
                 'min' => ':attribute Không được nhỏ hơn :min',
-                'max' => ':attribute Không được lớn hơn :max'
+                'max' => ':attribute Không được lớn hơn :max',
+                'image[]' => ':attribute file bắt buộc'
             ],
             [
                 'name' => 'Tên sản phẩm',
                 'origin_price' => 'Giá gốc',
                 'sale_price' => 'Giá bán',
                 'discount_price' => 'Giảm giá',
-                'content' => 'Mô tả sản phẩm'
+                'content' => 'Mô tả sản phẩm',
+                'image[]' => 'Ảnh sản phẩm'
             ]
         );
         if ($validator->errors()){

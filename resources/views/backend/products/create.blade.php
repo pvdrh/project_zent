@@ -115,6 +115,9 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                            @error('image[]')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Trạng thái sản phẩm</label>
