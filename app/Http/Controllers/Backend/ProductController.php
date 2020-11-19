@@ -12,6 +12,8 @@ use Illuminate\Validation\Validator;
 use App\Http\Requests\StoreProductRequest;
 
 
+
+
 class ProductController extends Controller
 {
     /**
@@ -172,7 +174,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        $user = Auth::find(1);
+
+        if($user->can('update', $products)){
+            dd('co ccccc');
+        }
+        else{
+            dd('khongggg');
+        }
     }
 
     /**

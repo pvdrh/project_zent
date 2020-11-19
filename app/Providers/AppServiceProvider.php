@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // $this->registerPolicies();
+
+        // Gate::define('update-product', function ($user, $product){
+        //    return $user->id == $product->user_id;
+        // });
     }
 }

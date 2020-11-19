@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 //    return view('home');
 //});
 
+Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
+Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
+
 Route::get('/', 'HomeController@index')->name('frontend.home');
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
     'namespace' => 'Backend',
@@ -49,7 +52,7 @@ Route::group([
     ->name('backend.users.index');
     Route::get('/create', 'UserController@create')
     ->name('backend.users.create');
-    Route::get('/edit', 'UserController@edit')
+    Route::get('/edit/{id}', 'UserController@edit')
     ->name('backend.users.edit');
         Route::get('/userinfo', 'UserController@test');
     });
@@ -74,3 +77,7 @@ Route::group([
 // Route::get('/product-detail', [\App\Http\Controllers\Frontend\ProductController::class,'index']);
 
 // Route::get('/order', [\App\Http\Controllers\Frontend\UserController::class,'index']);
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
