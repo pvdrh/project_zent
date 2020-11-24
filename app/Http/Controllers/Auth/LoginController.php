@@ -44,12 +44,22 @@ class LoginController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-        dd($email, $password);
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
             
-            return redirect()->route('Backend.dashboard');
+            return redirect()->route('dashboard');
             
         }
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        return redirect()->route('login.form');
     }
 }

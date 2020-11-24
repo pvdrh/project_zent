@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
 Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
 
+Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/', 'HomeController@index')->name('frontend.home');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -28,12 +30,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
     'namespace' => 'Backend',
     'prefix' => 'admin'
+    // 'middleware' => ['auth','admin']
 ], function (){
     // Trang dashboard - trang chủ admin
     Route::get('/dashboard', function(){
-        return view('dashboard');
+        return view('backend.dashboard');
     })->name('dashboard');
-
 
     // Quản lý sản phẩm
     Route::group(['prefix' => 'products'], function(){
@@ -78,6 +80,5 @@ Route::group([
 
 // Route::get('/order', [\App\Http\Controllers\Frontend\UserController::class,'index']);
 
-
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

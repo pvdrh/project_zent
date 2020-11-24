@@ -102,6 +102,12 @@
                             </a>
                         </li>
                     </ul>
+                    <li class="nav-item">
+                    <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button>Đăng xuất</button>
+                        </form>
+                    </li>
                 </li>
             </ul>
         </nav>

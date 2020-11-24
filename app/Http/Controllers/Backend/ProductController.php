@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Product;
+
+// use App\Http\Controllers\Backend\Product;
 
 
 
@@ -49,7 +52,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
         //        $image = Image::find(5);
         // $product = Product::find(2);
@@ -96,39 +99,48 @@ class ProductController extends Controller
             foreach ($files as $file){
                 $name = $file->getClientOriginalName();
                 $file->move('image_5', $name);
-                dd('OK');
             }
         }
 
-        $validator = Validator::make($request->all(),
-            [
-                'name'         => 'required|min:10|max:255',
-                'origin_price' => 'required|numeric',
-                'sale_price'   => 'required|numeric',
-                'discount_price' => 'required|numeric',
-                'content' => 'required',
-                'image[]' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-            ],
-            [
-                'required' => ':attribute Không được để trống',
-                'min' => ':attribute Không được nhỏ hơn :min',
-                'max' => ':attribute Không được lớn hơn :max',
-                'image[]' => ':attribute file bắt buộc'
-            ],
-            [
-                'name' => 'Tên sản phẩm',
-                'origin_price' => 'Giá gốc',
-                'sale_price' => 'Giá bán',
-                'discount_price' => 'Giảm giá',
-                'content' => 'Mô tả sản phẩm',
-                'image[]' => 'Ảnh sản phẩm'
-            ]
-        );
-        if ($validator->errors()){
-            return back()
-                ->withErrors($validator)
-                ->withInput();
+        $save =1;
+        if($save){
+            $request->session()->flash('status', 'Task was successful!');
         }
+        else{
+            $request->session()->flash('error', 'Task was not successful!');
+        }
+
+        //Kiểm tra dữ liệu nhập vào form
+
+        // $validator = Validator::make($request->all(),
+        //     [
+        //         'name'         => 'required|min:10|max:255',
+        //         'origin_price' => 'required|numeric',
+        //         'sale_price'   => 'required|numeric',
+        //         'discount_price' => 'required|numeric',
+        //         'content' => 'required',
+        //         'image[]' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        //     ],
+        //     [
+        //         'required' => ':attribute Không được để trống',
+        //         'min' => ':attribute Không được nhỏ hơn :min',
+        //         'max' => ':attribute Không được lớn hơn :max',
+        //         'image[]' => ':attribute file bắt buộc'
+        //     ],
+        //     [
+        //         'name' => 'Tên sản phẩm',
+        //         'origin_price' => 'Giá gốc',
+        //         'sale_price' => 'Giá bán',
+        //         'discount_price' => 'Giảm giá',
+        //         'content' => 'Mô tả sản phẩm',
+        //         'image[]' => 'Ảnh sản phẩm'
+        //     ]
+        // );
+        // if ($validator->errors()){
+        //     return back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
 
         //Kiểm tra dữ liệu ở form (cách 1)
         // $validatedData = $request->validate([
@@ -140,17 +152,17 @@ class ProductController extends Controller
         //     'sale_price' => 'required|numeric'
         // ]);
 
-        $product = new Product();
-        $product->name = $request->get('name');
-        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
-        $product->category_id = $request->get('category_id');
-        $product->origin_price = $request->get('origin_price');
-        $product->discount_price = 10;
-        $product->sale_price = $request->get('sale_price');
-        $product->content = $request->get('content');
-        $product->status = $request->get('status');
-        $product->user_id = 1;
-        $product->save();
+        // $product = new Product();
+        // $product->name = $request->get('name');
+        // $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        // $product->category_id = $request->get('category_id');
+        // $product->origin_price = $request->get('origin_price');
+        // $product->discount_price = 10;
+        // $product->sale_price = $request->get('sale_price');
+        // $product->content = $request->get('content');
+        // $product->status = $request->get('status');
+        // $product->user_id = 1;
+        // $product->save();
 
         return redirect()->route('backend.products.index');
     }
