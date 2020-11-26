@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+      
         return view('frontend.home');
     }
 
@@ -70,6 +72,10 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        //Cach mac dinh
+        // $categories = Category::get();
+        // Cache::put('Category', $categories, 60);
     }
 
     /**

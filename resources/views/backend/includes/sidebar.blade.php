@@ -82,6 +82,28 @@
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-blog"></i>
+                        <p>
+                            Quản lý bài viết
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="pages/UI/general.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo mới</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/UI/icons.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
+                    </ul>
+                     <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
                             Quản lý người dùng
@@ -102,11 +124,14 @@
                             </a>
                         </li>
                     </ul>
+                    </li>
                     <li class="nav-item">
-                    <form action="{{route('logout')}}" method="post">
+                    <form class="row" action="{{route('logout')}}" method="post">
                             @csrf
-                            <button>Đăng xuất</button>
-                        </form>
+                            <div class="col-md-4">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
+                    </form>
                     </li>
                 </li>
             </ul>

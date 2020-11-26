@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
-    use HasFactory;
     protected $table = 'order';
     public function products(){
         return $this->belongsToMany(Product::class);

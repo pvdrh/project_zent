@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,7 +26,7 @@ Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/', 'HomeController@index')->name('frontend.home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
     'namespace' => 'Backend',
@@ -33,9 +34,7 @@ Route::group([
     // 'middleware' => ['auth','admin']
 ], function (){
     // Trang dashboard - trang chủ admin
-    Route::get('/dashboard', function(){
-        return view('backend.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     // Quản lý sản phẩm
     Route::group(['prefix' => 'products'], function(){
