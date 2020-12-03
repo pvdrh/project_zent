@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone');
+            $table->tinyInteger('role');
             $table->string('address')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
