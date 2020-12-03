@@ -20,18 +20,21 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
+
 Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
 
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', 'HomeController@index')->name('frontend.home');
+Route::get('/', 'Frontend\HomeController@index')->name('frontend.home');
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
 
+
+//===Backend===
 Route::group([
     'namespace' => 'Backend',
-    'prefix' => 'admin'
-    // 'middleware' => ['auth','admin']
+    'prefix' => 'admin',
+    'middleware' => ['auth','admin']
 ], function (){
     // Trang dashboard - trang chủ admin
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -62,6 +65,8 @@ Route::group([
     Route::group(['prefix' => 'categories'], function(){
     Route::get('/', 'CategoryController@index')
     ->name('backend.categories.index');
+    Route::get('get-data', 'CategoryController@getData')
+    ->name('backend.categories.index');
     Route::get('/create', 'CategoryController@create')
     ->name('backend.categories.create');
     Route::get('/edit', 'CategoryController@edit')
@@ -81,3 +86,24 @@ Route::group([
 
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+//===Frontend===
+Route::group([
+    'namespace' => 'Frontend',
+
+], function (){
+    Route::get('/cart', 'CartController@index')
+    ->name('cart.index');
+
+    Route::post('/cart/add/{id}', 'CartController@add')
+    ->name('cart.add');
+
+    Route::get('/product/detail', 'ProductController@index')
+    ->name('product.index');
+
+    //test
+    // Route::get('/product/{slug}-{id}.html', 'ProductController@index')
+    // ->name('product.index');
+
+});
+

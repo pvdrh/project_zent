@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 
 
@@ -17,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(5); //Phân trang
+        // $categories = Category::paginate(5); //Phân trang
         return view('backend.categories.index')->with([
             'categories' => $categories
         ]);
@@ -89,5 +90,15 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getData(){
+        $categories = Category::all(); 
+
+        return Datatables::of($categories)
+            ->addIndexColum()
+
+            ->make(true);
+        
     }
 }

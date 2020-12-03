@@ -227,7 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'provides' => App\Providers\ComposerServiceProvider::class,
+        'providers' => Yajra\DataTables\DataTablesServiceProvider::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
-    ],
-
-];
+]];

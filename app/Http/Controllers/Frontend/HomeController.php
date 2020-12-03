@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
       
-        return view('frontend.home');
+        return view('frontend.page.home');
     }
 
     /**
@@ -87,5 +87,10 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function contact()
+    {
+        return view('frontend.page.contact');
     }
 }

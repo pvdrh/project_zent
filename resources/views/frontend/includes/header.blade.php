@@ -91,23 +91,7 @@
                                         <li><a href="product-details.html">Product Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="drop"><a href="blog.html">blog</a>
-                                    <ul class="dropdown">
-                                        <li><a href="blog.html">Blog Grid</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="drop"><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                        <li><a href="cart.html">Cart page</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="contact.html">contact</a></li>
-                                        <li><a href="product-grid.html">product grid</a></li>
-                                        <li><a href="product-details.html">product details</a></li>
-                                        <li><a href="wishlist.html">wishlist</a></li>
-                                    </ul>
+                                <li class="drop"><a href="#">blog</a>
                                 </li>
                                 <li><a href="contact.html">Liên Hệ</a></li>
                             </ul>

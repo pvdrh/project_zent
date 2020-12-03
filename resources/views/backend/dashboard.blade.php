@@ -25,9 +25,9 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner"> 
-              <h3>{{$users}}</h3>
+              <h3>{{$categories}}</h3>
 
-              <p>Người Dùng</p>
+              <p>Danh Mục</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -55,9 +55,9 @@
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>{{$categories}}</h3>
+              <h3>{{$users}}</h3>
 
-              <p>Danh Mục</p>
+              <p>Nguời Dùng</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -72,7 +72,7 @@
             <div class="inner">
               <h3>65</h3>
 
-              <p>Danh Mục</p>
+              <p>Bài Viết</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
