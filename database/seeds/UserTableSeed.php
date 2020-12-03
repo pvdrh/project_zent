@@ -12,6 +12,7 @@ class UserTableSeed extends Seeder
      */
     public function run()
     {
+        DB::truncate();
         DB::table('users')->insert([
             [
                 'name' => 'admin',
@@ -20,17 +21,7 @@ class UserTableSeed extends Seeder
                 'address' => 'asdfghjkl',
                 'role' => '1',
                 'password' => bcrypt('123456'),
-            ],
-            [
-                'name' => 'admin1',
-                'email' => 'admin1@gmail.com',
-                'phone' => '0835944783',
-                'address' => 'asdfghjkl2',
-                'role' => '1',
-                'password' => bcrypt('12345'),
             ]
-
-
         ]);
     }
 }
