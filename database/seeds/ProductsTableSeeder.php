@@ -26,8 +26,8 @@ class ProductsTableSeeder extends Seeder
                     'content' => 'Đây là bộ bàn ghé dành cho bốn người',
                     'user_id' => '2',
                     'category_id' => '1',
-                    'status' => '1'
-                    
+                    'status' => '1',
+                    'model' =>'G001'
                 ]
             ]);
         }

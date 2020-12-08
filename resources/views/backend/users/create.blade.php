@@ -1,5 +1,9 @@
 @extends('backend.layouts.master')
 
+@section('title')
+    Thêm Tài Khoản
+@endsection
+
 @section('content-header')  
 <!-- Content Header -->
 <div class="container-fluid">
@@ -49,8 +53,9 @@
                             <label>Quyền</label>
                             <select class="form-control select2" style="width: 100%;">
                                 <option>--Chọn quyền---</option>
-                                <option>Admin</option>
-                                <option>User</option>
+                                <option>Quản Trị</option>
+                                <option>Người Dùng</option>
+                                 <option>Cộng Tác Viên</option>
                             </select>
                         </div>
                     </div>

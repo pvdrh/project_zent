@@ -2,16 +2,16 @@
 
 @section('home')
    <!-- Start Bradcaump area -->
-   <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
+   <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(frontend/images/banner/2.jpg) no-repeat scroll center center / cover ;">
     <div class="ht__bradcaump__wrap">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="bradcaump__inner">
                         <nav class="bradcaump-inner">
-                          <a class="breadcrumb-item" href="index.html">Home</a>
+                          <a class="breadcrumb-item" href="index.html">Trang Chủ</a>
                           <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                          <span class="breadcrumb-item active">shopping cart</span>
+                          <span class="breadcrumb-item active">Giỏ Hàng</span>
                         </nav>
                     </div>
                 </div>
@@ -30,12 +30,12 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-thumbnail">products</th>
-                                    <th class="product-name">name of products</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product-quantity">Quantity</th>
-                                    <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Remove</th>
+                                    <th class="product-thumbnail">Sản Phẩm</th>
+                                    <th class="product-name">Tên Sản Phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số Lượng</th>
+                                    <th class="product-subtotal">Tổng</th>
+                                    <th class="product-remove">Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,11 +98,11 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="buttons-cart--inner">
                                 <div class="buttons-cart">
-                                    <a href="#">Continue Shopping</a>
+                                    <a href="#">Tiếp Tục Mua Sắm</a>
                                 </div>
                                 <div class="buttons-cart checkout--btn">
-                                    <a href="#">update</a>
-                                    <a href="#">checkout</a>
+                                    <a href="#">Cập Nhật</a>
+                                    <a href="#">Thanh Toán</a>
                                 </div>
                             </div>
                         </div>
@@ -110,23 +110,23 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="ht__coupon__code">
-                                <span>enter your discount code</span>
+                                <span>Nhập Mã Giảm Giá</span>
                                 <div class="coupon__box">
                                     <input type="text" placeholder="">
                                     <div class="ht__cp__btn">
-                                        <a href="#">enter</a>
+                                        <a href="#">Gửi</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12 smt-40 xmt-40">
                             <div class="htc__cart__total">
-                                <h6>cart total</h6>
+                                <h6>Thanh Toán</h6>
                                 <div class="cart__desk__list">
                                     <ul class="cart__desc">
-                                        <li>cart total</li>
-                                        <li>tax</li>
-                                        <li>shipping</li>
+                                        <li>Thành Tiền</li>
+                                        <li>Thuế</li>
+                                        <li>Phí Giao Hàng</li>
                                     </ul>
                                     <ul class="cart__price">
                                         <li>$909.00</li>
@@ -135,12 +135,12 @@
                                     </ul>
                                 </div>
                                 <div class="cart__total">
-                                    <span>order total</span>
+                                    <span>Tổng Đơn Hàng</span>
                                     <span>$918.00</span>
                                 </div>
                                 <ul class="payment__btn">
-                                    <li class="active"><a href="#">payment</a></li>
-                                    <li><a href="#">continue shopping</a></li>
+                                    <li class="active"><a href="#">Thanh Toán</a></li>
+                                    <li><a href="#">Tiếp Tục Mua Sắm</a></li>
                                 </ul>
                             </div>
                         </div>

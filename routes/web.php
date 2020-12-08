@@ -15,19 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('home');
-//});
-
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
-
 Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
-
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', 'Frontend\HomeController@index')->name('frontend.home');
 
-Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
 
 
 //===Backend===
@@ -65,8 +57,7 @@ Route::group([
     Route::group(['prefix' => 'categories'], function(){
     Route::get('/', 'CategoryController@index')
     ->name('backend.categories.index');
-    Route::get('get-data', 'CategoryController@getData')
-    ->name('backend.categories.index');
+    Route::get('get-data', 'CategoryController@getData');
     Route::get('/create', 'CategoryController@create')
     ->name('backend.categories.create');
     Route::get('/edit', 'CategoryController@edit')
@@ -74,24 +65,15 @@ Route::group([
     });
 });
 
-// Route::get('/product/create-img', [\App\Http\Controllers\Backend\ProductController::class,'store']);
 
-//Route frontend
-
-// Route::get('/categories', [\App\Http\Controllers\Frontend\CategoryController::class,'index']);
-
-// Route::get('/product-detail', [\App\Http\Controllers\Frontend\ProductController::class,'index']);
-
-// Route::get('/order', [\App\Http\Controllers\Frontend\UserController::class,'index']);
-
-// Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 //===Frontend===
 Route::group([
     'namespace' => 'Frontend',
 
 ], function (){
+
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/cart', 'CartController@index')
     ->name('cart.index');
 
@@ -100,6 +82,8 @@ Route::group([
 
     Route::get('/product/detail', 'ProductController@index')
     ->name('product.index');
+    Route::get('/contact', 'HomeController@contact')->name('contact');
+
 
     //test
     // Route::get('/product/{slug}-{id}.html', 'ProductController@index')

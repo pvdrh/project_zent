@@ -1,5 +1,9 @@
 @extends('backend.layouts.master')
 
+@section('title')
+    Quản Lý Tài Khoản
+@endsection
+
 @section('content-header')
 <!-- Content Header -->
 <div class="container-fluid">
@@ -7,13 +11,6 @@
         <div class="col-sm-6">
             <h1 class="m-0 text-dark">Danh sách người dùng</h1>
         </div><!-- /.col -->
-{{--        <div class="col-sm-6">--}}
-{{--            <ol class="breadcrumb float-sm-right">--}}
-{{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
-{{--                <li class="breadcrumb-item"><a href="#">Người dùng</a></li>--}}
-{{--                <li class="breadcrumb-item active">Danh sách</li>--}}
-{{--            </ol>--}}
-{{--        </div><!-- /.col -->--}}
 
         @foreach($users as $user)
             <tr>

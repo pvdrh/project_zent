@@ -84,14 +84,18 @@
                                     </form>
                                     </div>
                                     <div class="sin__desc align--left">
-                                        <p><span>size</span></p>
+                                        <p><span>Số Lượng</span></p>
                                         <select class="select__size">
-                                            <option>s</option>
-                                            <option>l</option>
-                                            <option>xs</option>
-                                            <option>xl</option>
-                                            <option>m</option>
-                                            <option>s</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
                                         </select>
                                     </div>
                                     <div class="sin__desc align--left">
@@ -120,7 +124,7 @@
                                     </div>
 
                                     <div class="sin__desc product__share__link">
-                                        <p><span>Share this:</span></p>
+                                        <p><span>Chia Sẻ:</span></p>
                                         <ul class="pro__share">
                                             <li><a href="#" target="_blank"><i class="icon-social-twitter icons"></i></a></li>
 
@@ -151,9 +155,9 @@
                     <div class="col-xs-12">
                         <!-- Start List And Grid View -->
                         <ul class="pro__details__tab" role="tablist">
-                            <li role="presentation" class="description active"><a href="#description" role="tab" data-toggle="tab">description</a></li>
-                            <li role="presentation" class="review"><a href="#review" role="tab" data-toggle="tab">review</a></li>
-                            <li role="presentation" class="shipping"><a href="#shipping" role="tab" data-toggle="tab">shipping</a></li>
+                            <li role="presentation" class="description active"><a href="#description" role="tab" data-toggle="tab">Mô Tả</a></li>
+                            <li role="presentation" class="review"><a href="#review" role="tab" data-toggle="tab">Đánh Giá</a></li>
+                            <li role="presentation" class="shipping"><a href="#shipping" role="tab" data-toggle="tab">Giao Hàng</a></li>
                         </ul>
                         <!-- End List And Grid View -->
                     </div>

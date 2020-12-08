@@ -31,7 +31,9 @@ class StoreProductRequest extends FormRequest
                'status' => 'required',
                'origin_price' => 'required|numeric',
                'sale_price' => 'required|numeric',
-               'image[]' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+               'image[]' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+               'quantity' => 'required|numeric|min:1',
+               'model' => 'required|min:5|max:20' 
        ];
    }
 
@@ -53,7 +55,9 @@ class StoreProductRequest extends FormRequest
            'origin_price' => 'Giá sản phẩm',
            'sale_price' => 'Giá bán',
            'content' => 'Mô tả sản phẩm',
-           'image[]' => 'Ảnh sản phẩm'
+           'image[]' => 'Ảnh sản phẩm',
+           'quantity' => 'Số Lượng sản phẩm',
+           'model' => 'Nhãn hiệu sản phẩm' 
        ];
    }
 }

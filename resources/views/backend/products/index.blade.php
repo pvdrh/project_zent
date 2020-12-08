@@ -2,6 +2,9 @@
 
 @section('content-header')
 
+@section('title')
+    Quản Lý Sản Phẩm
+@endsection
 
 <!-- Content Header -->
 <div class="container-fluid">
@@ -31,7 +34,6 @@
                 <div class="card-header">
                     <h3 class="card-title">Sản phẩm mới nhập</h3>
 
-                    //Thông báo tạo thành công
                     @if(session()->has('status'))
                     <span style="color:red">{{session()->get('status')}}</span>
                         @endif
@@ -54,9 +56,13 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Nhãn Hiệu</th>
                             <th>Tên sản phẩm</th>
                             <th>Thời gian</th>
-                            <th>Status</th>
+                            <th>Số Lượng</th>
+                            <th>Trạng Thái</th>
+                            <th>Giá Gốc</th>
+                            <th>Giá Khuyến Mãi</th>
                             <th>Mô tả</th>
                         </tr>
                         </thead>
@@ -64,11 +70,14 @@
                             @foreach($products as $product)
                             <tr>
                                  <td>{{ $product->id }}</td>
+                                 <td>{!!$product->model!!}</td>
                                  <td>{{ $product->name }}</td>
+                                 <td>{{ $product->created_at }}</td>
+                                 <td>{{ $product->status }}</td>
+                                 <td>{!!$product->origin_price!!}</td>
+                                 <td>{!!$product->discount_price!!}</td>
                                  <td>{{ $product->content }}</td>
                                  <td>{{ $product->category_id }}</td>
-                                 <td>{{ $product->discount_price }}</td>
-                                 <td>{{ $product->created_at }}</td>
                                  <td><span class="tag tag-success">Approved</span></td>
                              </tr>
                              @endforeach

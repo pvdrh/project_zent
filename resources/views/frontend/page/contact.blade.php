@@ -78,16 +78,16 @@
         </div>
         <!-- End Offset Wrapper -->
         <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area" style="position:relative; background: rgba(0, 0, 0, 0) url(https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80) no-repeat center center / cover ;">
+        <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(frontend/images/banner/2.jpg) no-repeat scroll center center / cover ;">
             <div class="ht__bradcaump__wrap">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="bradcaump__inner">
                                 <nav class="bradcaump-inner">
-                                  <a class="breadcrumb-item" href="index.html">Home</a>
+                                  <a class="breadcrumb-item" href="index.html">Trang Chủ</a>
                                   <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                                  <span class="breadcrumb-item active">Contact Us</span>
+                                  <span class="breadcrumb-item active">Liên Hệ</span>
                                 </nav>
                             </div>
                         </div>
@@ -106,14 +106,14 @@
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
-                        <h2 class="title__line--6">CONTACT US</h2>
+                        <h2 class="title__line--6">LIÊN HỆ</h2>
                         <div class="address">
                             <div class="address__icon">
                                 <i class="icon-location-pin icons"></i>
                             </div>
                             <div class="address__details">
-                                <h2 class="ct__title">our address</h2>
-                                <p>666 5th Ave New York, NY, United </p>
+                                <h2 class="ct__title">Địa Chỉ</h2>
+                                <p>Tầng 6, số 2 ngõ 118 Trương Định, Hai Bà Trưng, Hà Nội </p>
                             </div>
                         </div>
                         <div class="address">
@@ -121,8 +121,8 @@
                                 <i class="icon-envelope icons"></i>
                             </div>
                             <div class="address__details">
-                                <h2 class="ct__title">openning hour</h2>
-                                <p>666 5th Ave New York, NY, United </p>
+                                <h2 class="ct__title">Email</h2>
+                                <p>duyvpvnua@gmail.com </p>
                             </div>
                         </div>
 
@@ -131,8 +131,8 @@
                                 <i class="icon-phone icons"></i>
                             </div>
                             <div class="address__details">
-                                <h2 class="ct__title">Phone Number</h2>
-                                <p>123-6586-587456</p>
+                                <h2 class="ct__title">Điện Thoại</h2>
+                                <p>0835904783</p>
                             </div>
                         </div>
                     </div>      
@@ -141,29 +141,29 @@
                     <div class="contact-form-wrap mt--60">
                         <div class="col-xs-12">
                             <div class="contact-title">
-                                <h2 class="title__line--6">SEND A MAIL</h2>
+                                <h2 class="title__line--6">GÓP Ý</h2>
                             </div>
                         </div>
                         <div class="col-xs-12">
                             <form id="contact-form" action="#" method="post">
                                 <div class="single-contact-form">
                                     <div class="contact-box name">
-                                        <input type="text" name="name" placeholder="Your Name*">
-                                        <input type="email" name="email" placeholder="Mail*">
+                                        <input type="text" name="name" placeholder="Tên Của Bạn*">
+                                        <input type="email" name="email" placeholder="Mall*">
                                     </div>
                                 </div>
                                 <div class="single-contact-form">
                                     <div class="contact-box subject">
-                                        <input type="text" name="subject" placeholder="Subject*">
+                                        <input type="text" name="subject" placeholder="Tiêu Đề*">
                                     </div>
                                 </div>
                                 <div class="single-contact-form">
                                     <div class="contact-box message">
-                                        <textarea name="message" placeholder="Your Message"></textarea>
+                                        <textarea name="message" placeholder="Lời Nhắn"></textarea>
                                     </div>
                                 </div>
                                 <div class="contact-btn">
-                                    <button type="submit" class="fv-btn">Send MESSAGE</button>
+                                    <button type="submit" class="fv-btn">GỬI</button>
                                 </div>
                             </form>
                             <div class="form-output">

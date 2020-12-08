@@ -1,5 +1,9 @@
 @extends('backend.layouts.master')
 
+
+@section('title')
+    Quản Lý Danh Mục
+@endsection
 @section('content-header')
     
 

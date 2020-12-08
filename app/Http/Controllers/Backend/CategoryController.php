@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // $categories = Category::paginate(5); //Phân trang
+        $categories = Category::paginate(5); //Phân trang
         return view('backend.categories.index')->with([
             'categories' => $categories
         ]);
@@ -33,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.categories.create');
     }
 
     /**

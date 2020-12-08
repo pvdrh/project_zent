@@ -1,5 +1,9 @@
 @extends('backend.layouts.master')
 
+@section('title')
+    Thêm Sản Phẩm
+@endsection
+
 @section('content-header')
 <!-- Content Header -->
 <div class="container-fluid">
@@ -28,14 +32,14 @@
             <div class="card">
                 
                
-                {{-- <div class="card-header">
+                <div class="card-header">
                     <h3 class="card-title">Tạo sản phẩm</h3>
-                </div> --}}
+                </div> 
                 <!-- /.card-header -->
                 <!-- form start -->
 
                 {{-- Bắt tất cả các loại lỗi nhập vào trong form --}}
-                {{-- @if($errors->any())
+                 {{-- @if($errors->any())
                     <div class="alert alert-success">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -82,7 +86,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Giá bán</label>
-                                    <input type="text" name="sale_price" class="form-control" placeholder="Điền giá gốc">
+                                    <input type="text" name="sale_price" class="form-control" placeholder="Điền giá bán">
                                     @error('sale_price')
                                     <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                     @enderror
@@ -91,13 +95,31 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Giảm giá</label>
-                                    <input type="text" name="discount_price" class="form-control" placeholder="Điền giá gốc">
+                                    <input type="text" name="discount_price" class="form-control" placeholder="Điền giảm giá">
                                     @error('discount_price')
                                     <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Số Lượng</label>
+                                    <input type="number" name="quantity" class="form-control" placeholder="Điền số lượng">
+                                    @error('quantity')
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-6">
+                                <div class="form-group">
+                                    <label>Nhãn hiệu</label>
+                                    <input type="text" name="model" class="form-control" placeholder="Điền nhãn hiệu">
+                                    @error('model')
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                             <textarea class="textarea" name="content" placeholder="Place some text here"
@@ -106,6 +128,21 @@
                                       <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                       @enderror
                                     </div>
+                                    <div class="form-group">
+                            <label for="exampleInputFile">Ảnh đại diện sản phẩm</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="avatar" multiple id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="">Upload</span>
+                                </div>
+                            </div>
+                            @error('image[]')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                             <div class="input-group">
@@ -140,15 +177,6 @@
                         <a href="{{ route('backend.products.index') }}" class="btn btn-default">Huỷ bỏ</a>
                         <button type="submit" class="btn btn-success">Tạo mới</button>
                     </div>
-
-                {{-- </form>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-default">Huỷ bỏ</button>
-                        <button type="submit" class="btn btn-sucess">Tạo mới</button>
-                    </div>
-                </form> --}}
             </div>
         </div>
     </div>

@@ -6,9 +6,9 @@
                 <!-- Start Single Footer Widget -->
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="footer">
-                        <h2 class="title__line--2">ABOUT US</h2>
+                        <h2 class="title__line--2">Về Chúng Tôi</h2>
                         <div class="ft__details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim</p>
+                            <p>Zent - Laravel 20</p>
                             <div class="ft__social__link">
                                 <ul class="social__link">
                                     <li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
@@ -29,14 +29,12 @@
                 <!-- Start Single Footer Widget -->
                 <div class="col-md-2 col-sm-6 col-xs-12 xmt-40">
                     <div class="footer">
-                        <h2 class="title__line--2">information</h2>
+                        <h2 class="title__line--2">Thông Tin</h2>
                         <div class="ft__inner">
                             <ul class="ft__list">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                                <li><a href="#">Privacy & Policy</a></li>
-                                <li><a href="#">Terms  & Condition</a></li>
-                                <li><a href="#">Manufactures</a></li>
+                                <li><a href="https://www.facebook.com/pvdrighthand/">Về Chúng Tôi</a></li>
+                                <li><a href="#">Thông Tin Giao Hàng</a></li>
+                                <li><a href="#">Chính Sách Bảo Mật</a></li>
                             </ul>
                         </div>
                     </div>
@@ -45,14 +43,12 @@
                 <!-- Start Single Footer Widget -->
                 <div class="col-md-2 col-sm-6 col-xs-12 xmt-40 smt-40">
                     <div class="footer">
-                        <h2 class="title__line--2">my account</h2>
+                        <h2 class="title__line--2">Tài Khoản</h2>
                         <div class="ft__inner">
                             <ul class="ft__list">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="cart.html">My Cart</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="cart.html">Giỏ Hàng</a></li>
+                                <li><a href="#">Đăng Nhập</a></li>
+                                <li><a href="checkout.html">Thanh Toán</a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,14 +57,12 @@
                 <!-- Start Single Footer Widget -->
                 <div class="col-md-2 col-sm-6 col-xs-12 xmt-40 smt-40">
                     <div class="footer">
-                        <h2 class="title__line--2">Our service</h2>
+                        <h2 class="title__line--2">Dịch Vụ</h2>
                         <div class="ft__inner">
                             <ul class="ft__list">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="cart.html">My Cart</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="#">Phí Giao Hàng</a></li>
+                                <li><a href="cart.html">Bảo Hành</a></li>
+                                <li><a href="#">Tư Vấn</a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,12 +71,12 @@
                 <!-- Start Single Footer Widget -->
                 <div class="col-md-3 col-sm-6 col-xs-12 xmt-40 smt-40">
                     <div class="footer">
-                        <h2 class="title__line--2">NEWSLETTER </h2>
+                        <h2 class="title__line--2">Nhận Thông Tin Khuyến Mãi </h2>
                         <div class="ft__inner">
                             <div class="news__input">
                                 <input type="text" placeholder="Your Mail*">
                                 <div class="send__btn">
-                                    <a class="fr__btn" href="#">Send Mail</a>
+                                    <a class="fr__btn" href="#">Gửi</a>
                                 </div>
                             </div>
                             

@@ -12,7 +12,7 @@ use Illuminate\Validation\Validator;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 
-// use App\Http\Controllers\Backend\Product;
+
 
 
 
@@ -63,12 +63,6 @@ class ProductController extends Controller
         //     'product_id' => '2'
         // ]);
 
-//        if($request->hasFile('image')){
-//            $path = Storage::disk('public')->putFile('images',$request->file('image'));
-//            dd('file');
-//        }else{
-//            dd('khong co');
-//        };
 
 //        if($request->hasFile('image')){
 //            //Cách 1 (nên dùng cách này)
@@ -81,26 +75,64 @@ class ProductController extends Controller
 //            $file->move('image_2', $name);
 //
 //            //Lưu ảnh
-////            $image = new Image();
-////            $image->name = $file->getClientOriginalName();
-////            $image->disk = 'public';
-////            $image->path = $path;
-////            $image->product_id = 1;
-////            $image->save();
+        //    $image = new Image();
+        //    $image->name = $file->getClientOriginalName();
+        //    $image->disk = 'public';
+        //    $image->path = $path;
+        //    $image->product_id = 1;
+        //    $image->save();
 //
 //            dd('OK');
 //        }else{
 //            dd('khong co');
 //        };
 
-        if($request->hasFile('images')){
-            $files = $request->file('images');
+        // if($request->hasFile('images')){
+        //     $files = $request->file('images');
 
-            foreach ($files as $file){
-                $name = $file->getClientOriginalName();
-                $file->move('image_5', $name);
-            }
+        //     foreach ($files as $file){
+        //         $name = $file->getClientOriginalName();
+        //         $file->move('image_5', $name);
+        //     }
+        // }
+
+        
+        
+
+        $product = new Product();
+         //Lưu avatar
+         $file = $request->file('avatar');
+         $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
+         $product->avatar = $path;
+
+        $product->model = $request->get('model');
+        $product->name = $request->get('name');
+        $product->quantity = $request->get('quantity');
+        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        $product->category_id = $request->get('category_id');
+        $product->origin_price = $request->get('origin_price');
+        $product->discount_price = $request->get('discount_price');
+        $product->sale_price = $request->get('sale_price');
+        $product->content = $request->get('content');
+        $product->status = $request->get('status');
+        $product->user_id = 1;
+        $product->save();
+
+   
+    //Lưu ảnh của sản phẩm
+        if($request->hasFile('images')){
+        $images = $request->file('images');
+        foreach($images as $image){
+            $image = new Image();
+            $file = $request->file('avatar');
+            $image->product_id = $product->id;
+            $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
+            $image->name = $file->getClientOriginalName();
+            $image->path = $path;
+            $image->save();
         }
+        }
+       
 
         $save =1;
         if($save){
@@ -109,61 +141,6 @@ class ProductController extends Controller
         else{
             $request->session()->flash('error', 'Task was not successful!');
         }
-
-        //Kiểm tra dữ liệu nhập vào form
-
-        // $validator = Validator::make($request->all(),
-        //     [
-        //         'name'         => 'required|min:10|max:255',
-        //         'origin_price' => 'required|numeric',
-        //         'sale_price'   => 'required|numeric',
-        //         'discount_price' => 'required|numeric',
-        //         'content' => 'required',
-        //         'image[]' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        //     ],
-        //     [
-        //         'required' => ':attribute Không được để trống',
-        //         'min' => ':attribute Không được nhỏ hơn :min',
-        //         'max' => ':attribute Không được lớn hơn :max',
-        //         'image[]' => ':attribute file bắt buộc'
-        //     ],
-        //     [
-        //         'name' => 'Tên sản phẩm',
-        //         'origin_price' => 'Giá gốc',
-        //         'sale_price' => 'Giá bán',
-        //         'discount_price' => 'Giảm giá',
-        //         'content' => 'Mô tả sản phẩm',
-        //         'image[]' => 'Ảnh sản phẩm'
-        //     ]
-        // );
-        // if ($validator->errors()){
-        //     return back()
-        //         ->withErrors($validator)
-        //         ->withInput();
-        // }
-
-        //Kiểm tra dữ liệu ở form (cách 1)
-        // $validatedData = $request->validate([
-        //     'name' => 'required|min:10|max:255',
-        //     'category_id' => 'required',
-        //     'content' => 'required',
-        //     'status' => 'required',
-        //     'origin_price' => 'required|numeric',
-        //     'sale_price' => 'required|numeric'
-        // ]);
-
-        // $product = new Product();
-        // $product->name = $request->get('name');
-        // $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
-        // $product->category_id = $request->get('category_id');
-        // $product->origin_price = $request->get('origin_price');
-        // $product->discount_price = 10;
-        // $product->sale_price = $request->get('sale_price');
-        // $product->content = $request->get('content');
-        // $product->status = $request->get('status');
-        // $product->user_id = 1;
-        // $product->save();
-
         return redirect()->route('backend.products.index');
     }
 
