@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->integer('origin_price');
             $table->integer('sale_price');
-            $table->integer('discount_price');
             $table->string('content');
             $table->integer('user_id');
             $table->integer('category_id');

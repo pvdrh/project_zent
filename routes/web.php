@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//===Auth Backend===
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
 Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
@@ -50,7 +52,8 @@ Route::group([
     ->name('backend.users.create');
     Route::get('/edit/{id}', 'UserController@edit')
     ->name('backend.users.edit');
-        Route::get('/userinfo', 'UserController@test');
+    Route::POST('/store', 'UserController@store')
+    ->name('backend.users.store');
     });
 
     //Quản lý danh mục
@@ -60,8 +63,14 @@ Route::group([
     Route::get('get-data', 'CategoryController@getData');
     Route::get('/create', 'CategoryController@create')
     ->name('backend.categories.create');
-    Route::get('/edit', 'CategoryController@edit')
+    Route::get('/edit{id}', 'CategoryController@edit')
     ->name('backend.categories.edit');
+    Route::POST('/store', 'CategoryController@store')
+    ->name('backend.categories.store');
+    Route::delete('/delete{id}', 'CategoryController@destroy')
+    ->name('backend.categories.delete');
+    Route::put('/update{id}', 'CategoryController@update')
+    ->name('backend.categories.update');
     });
 });
 
@@ -74,15 +83,16 @@ Route::group([
 ], function (){
 
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/contact', 'HomeController@contact')->name('contact');
+
+
     Route::get('/cart', 'CartController@index')
     ->name('cart.index');
-
     Route::post('/cart/add/{id}', 'CartController@add')
     ->name('cart.add');
 
     Route::get('/product/detail', 'ProductController@index')
     ->name('product.index');
-    Route::get('/contact', 'HomeController@contact')->name('contact');
 
 
     //test

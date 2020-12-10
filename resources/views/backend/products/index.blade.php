@@ -76,9 +76,8 @@
                                  <td>{{ $product->status }}</td>
                                  <td>{!!$product->origin_price!!}</td>
                                  <td>{!!$product->discount_price!!}</td>
-                                 <td>{{ $product->content }}</td>
+                                 <td>{!!$product->content!!}</td>
                                  <td>{{ $product->category_id }}</td>
-                                 <td><span class="tag tag-success">Approved</span></td>
                              </tr>
                              @endforeach
                         </tbody>

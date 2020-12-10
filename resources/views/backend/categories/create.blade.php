@@ -4,24 +4,6 @@
     Thêm Danh Mục
 @endsection
 
-@section('content-header')  
-<!-- Content Header -->
-<div class="container-fluid">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Tạo Danh Mục</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Người dùng</a></li>
-                <li class="breadcrumb-item active">Tạo mới</li>
-            </ol>
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-</div><!-- /.container-fluid -->
-@endsection
-
 @section('content') 
 <!-- Content -->
 <div class="container-fluid">
@@ -31,37 +13,33 @@
             <!-- general form elements -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tạo mới người dùng</h3>
+                    <h3 class="card-title">Tạo danh mục</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form"  action="{{route('backend.categories.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên</label>
-                            <input type="text" class="form-control" id="" placeholder="Tên người dùng">
+                            <label for="exampleInputEmail1">Tên Danh Mục</label>
+                            <input name="name" type="text" class="form-control" id="" placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="" placeholder="Email">
+                            <label for="exampleInputEmail1">Slug</label>
+                            <input name="slug" type="text" class="form-control" id="" placeholder="Slug">
+                        </div>
+                         <div class="form-group">
+                            <label for="exampleInputEmail1">Danh Mục Cha</label>
+                            <input name="parent_id" type="number" class="form-control" id="" placeholder="Danh mục cha">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Mật khẩu</label>
-                            <input type="password" class="form-control" id="">
-                        </div>
-                        <div class="form-group">
-                            <label>Quyền</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option>--Chọn quyền---</option>
-                                <option>Admin</option>
-                                <option>User</option>
-                            </select>
+                            <label for="exampleInputEmail1">Độ Sâu</label>
+                            <input name="depth" type="number" class="form-control" id="" placeholder="Danh mục cha">
                         </div>
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-default">Huỷ bỏ</button>
                         <button type="submit" class="btn btn-sucess">Tạo mới</button>
                     </div>
                 </form>

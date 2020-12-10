@@ -13,10 +13,6 @@ use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 
 
-
-
-
-
 class ProductController extends Controller
 {
     /**
@@ -52,8 +48,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
+        
         //        $image = Image::find(5);
         // $product = Product::find(2);
         // $image = $product->images()->create([
@@ -98,50 +95,48 @@ class ProductController extends Controller
 
         
         
-
         $product = new Product();
-         //Lưu avatar
-         $file = $request->file('avatar');
-         $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
-         $product->avatar = $path;
+       //Lưu avatar
+       $file = $request->file('avatar');
+       $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
+       $product->avatar = $path;
 
-        $product->model = $request->get('model');
-        $product->name = $request->get('name');
-        $product->quantity = $request->get('quantity');
-        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
-        $product->category_id = $request->get('category_id');
-        $product->origin_price = $request->get('origin_price');
-        $product->discount_price = $request->get('discount_price');
-        $product->sale_price = $request->get('sale_price');
-        $product->content = $request->get('content');
-        $product->status = $request->get('status');
-        $product->user_id = 1;
-        $product->save();
+      $product->model = $request->get('model');
+      $product->name = $request->get('name');
+      $product->quantity = $request->get('quantity');
+      $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+      $product->category_id = $request->get('category_id');
+      $product->origin_price = $request->get('origin_price');
+      $product->sale_price = $request->get('sale_price');
+      $product->content = $request->get('content');
+      $product->status = $request->get('status');
+      $product->user_id = 1;
+      $product->save();
 
-   
-    //Lưu ảnh của sản phẩm
-        if($request->hasFile('images')){
-        $images = $request->file('images');
-        foreach($images as $image){
-            $image = new Image();
-            $file = $request->file('avatar');
-            $image->product_id = $product->id;
-            $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
-            $image->name = $file->getClientOriginalName();
-            $image->path = $path;
-            $image->save();
-        }
-        }
-       
+ 
+  //Lưu ảnh của sản phẩm
+      if($request->hasFile('images')){
+      $images = $request->file('images');
+      foreach($images as $image){
+          $image = new Image();
+          $file = $request->file('avatar');
+          $image->product_id = $product->id;
+          $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
+          $image->name = $file->getClientOriginalName();
+          $image->path = $path;
+          $image->save();
+      }
+      }
+     
 
-        $save =1;
-        if($save){
-            $request->session()->flash('status', 'Task was successful!');
-        }
-        else{
-            $request->session()->flash('error', 'Task was not successful!');
-        }
-        return redirect()->route('backend.products.index');
+      $save =1;
+      if($save){
+          $request->session()->flash('status', 'Tạo thành công');
+      }
+      else{
+          $request->session()->flash('error', 'Tạo không thành công');
+      }
+      return redirect()->route('backend.products.index');
     }
 
     /**

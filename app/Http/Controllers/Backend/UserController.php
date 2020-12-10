@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Validated;
+use App\Http\Requests\UserProductRequest;
 
 class UserController extends Controller
 {
@@ -40,7 +43,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->phone = $request->get('phone');
+        $user->role = $request->get('role');
+        $success = $user->save();
+        if ($success)
+            $request->session()->flash('success', 'Tao mới thành công nhân viên ' .$user->name);
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
+
+        return redirect()->route('User.index');
     }
 
     /**
