@@ -4,24 +4,6 @@
     Thêm Tài Khoản
 @endsection
 
-@section('content-header')  
-<!-- Content Header -->
-<div class="container-fluid">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Tạo người dùng</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Người dùng</a></li>
-                <li class="breadcrumb-item active">Tạo mới</li>
-            </ol>
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-</div><!-- /.container-fluid -->
-@endsection
-
 @section('content') 
 <!-- Content -->
 <div class="container-fluid">
@@ -31,39 +13,48 @@
             <!-- general form elements -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tạo mới người dùng</h3>
+                    <h3 class="card-title">Tạo tài khoản</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form"  action="{{route('backend.users.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên</label>
-                            <input type="text" class="form-control" id="" placeholder="Tên người dùng">
+                            <input name="name" type="text" class="form-control" id="" placeholder="Tên người dùng">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="" placeholder="Email">
+                            <input name="email" type="email" class="form-control" id="" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mật khẩu</label>
-                            <input type="password" class="form-control" id="">
+                            <input name="password" type="password" class="form-control" id="" placeholder="Mật khẩu">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số điện thoại</label>
+                            <input name="phone" type="text" class="form-control" id="" placeholder="SĐT">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa chỉ</label>
+                            <input name="address" type="text" class="form-control" id="" placeholder="Địa chỉ">
                         </div>
                         <div class="form-group">
                             <label>Quyền</label>
-                            <select class="form-control select2" style="width: 100%;">
+                            <select name="role" class="form-control select2" style="width: 100%;">
                                 <option>--Chọn quyền---</option>
-                                <option>Quản Trị</option>
-                                <option>Người Dùng</option>
-                                 <option>Cộng Tác Viên</option>
+                                <option value="1">Quản Trị</option>
+                                <option value="2">Người Dùng</option>
+                                <option value="3">Cộng Tác Viên</option>
                             </select>
                         </div>
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-default">Huỷ bỏ</button>
-                        <button type="submit" class="btn btn-sucess">Tạo mới</button>
+                        <a href="{{ route('backend.users.index') }}" class="btn btn-danger">Huỷ bỏ</a>
+                        <button type="submit" class="btn btn-success">Tạo mới</button>
                     </div>
                 </form>
             </div>

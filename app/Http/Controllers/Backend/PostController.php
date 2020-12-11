@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
+use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Validator;
 
 
-
-class CategoryController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +18,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(5); 
-        return view('backend.categories.index')->with([
-            'categories' => $categories
+
+        $posts = Post::paginate(5);
+        return view('backend.posts.index')->with([
+            'posts' => $posts
         ]);
     }
-
-  
 
     /**
      * Show the form for creating a new resource.
@@ -34,9 +32,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // where('depth', '<=', 2)->
-        $categories = Category::get();
-        return view('backend.categories.create')->with(['categories' => $categories]);
+        $posts = Post::get();
+        return view('backend.posts.create')->with(['posts' => $posts]);
     }
 
     /**
@@ -47,19 +44,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
-        $category->slug = $request->slug;
-        $category->parent_id = $request->parent_id;
-        $category->depth = $request->depth;
-        $save = $category->save();
+        $post = new Post();
+
+        $file = $request->file('img');
+        $path = storage::disk('public')->putFileAs('img', $file, 'posts' . $file->getClientOriginalName());
+        $post->img = $path;
+
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->content = $request->content;
+        $save = $post->save();
 
         if ($save)
             $request->session()->flash('success', 'Tao mới thành công');
         else
             $request->session()->flash('error', 'Tạo mới thất bại');
 
-        return redirect()->route('backend.categories.index');
+        return redirect()->route('backend.posts.index');
     }
 
     /**
@@ -81,8 +82,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('backend.categories.edit')->with('category',$category);
+        $post = Post::find($id);
+        return view('backend.posts.edit')->with('post',$post);
     }
 
     /**
@@ -94,20 +95,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category->name = $request->get('name');
-        $category->slug = $request->get('slug');
-        $category->parent_id = $request->get('parent_id');
-        $category->depth = $request->get('depth');
+        $post = Post::find($id);
+        $post->title = $request->get('title');
+        $post->slug = $request->get('slug');
+        $post->content = $request->get('content');
 
-        $save = $category->save();
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $path = storage::disk('public')->putFileAs('img', $file, 'posts' . $file->getClientOriginalName());
+            $post->img = $path;
+        }
+        $save = $post->save();
 
         if ($save)
             $request->session()->flash('success', 'Cập nhật thành công');
         else
             $request->session()->flash('error', 'Cập nhật thất bại');
 
-        return redirect()->route('backend.categories.index');
+        return redirect()->route('backend.posts.index');
     }
 
     /**
@@ -118,24 +123,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $products = Product::where('category_id',$category->id)->get();
-        foreach ($products as $product){
-            $product->category_id = null;
-            $product->save();
-        }
-
-        $category->delete();
-        return redirect()->route('backend.categories.index');
-    }
-
-    public function getData(){
-        $categories = Category::all(); 
-
-        return Datatables::of($categories)
-            ->addIndexColum()
-
-            ->make(true);
-        
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('backend.posts.index');
     }
 }

@@ -1,10 +1,8 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    Quản Lý Tài Khoản
+    Quản Lý Bài Viết
 @endsection
-
-
 
 @section('content')
 <!-- Content -->
@@ -15,7 +13,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Danh sách người dùng</h3>
+                    <h3 class="card-title">Danh sách bài viết</h3>
 
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
@@ -33,40 +31,33 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Email</th>
-                            <th>Tên</th>
-                            <th>Thời gian</th>
-                            <th>SĐT</th>
-                            <th>Chức Vụ</th>
+                            <th>Tiêu Đề</th>
+                            <th>Ảnh</th>
+                            <th>Nội Dung</th>
+                            <th>Slug</th>
+                            <th>Thời Gian</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($posts as $post)
                             <tr>
-                                 <td>{{ $user->id }}</td>
-                                 <td>{{ $user->email }}</td>
-                                 <td>{{ $user->name }}</td>
-                                 <td>{{ $user->created_at }}</td>
-                                 <td>{{ $user->phone }}</td>
-                                 @if($user->role == 1)
-                                 <td>Quản Trị Viên</td>
-                                 @endif
-                                 @if($user->role == 2)
-                                 <td>Nhân Viên</td>
-                                 @endif
-                                 @if($user->role == 3)
-                                 <td>Cộng Tác Viên</td>
-                                 @endif
+                                 <td>{{ $post->id }}</td>
+                                 <td>{{ $post->title }}</td>
+                                 <td>{{ $post->img }}</td>
+                                 <td>{!! $post->content!!}</td>
+                                 <td>{{ $post->slug }}</td>
+                                 <td>{{ $post->created_at }}</td>
+                                 
                                    <!-- //Nút chỉnh sửa-->
                 <td>
-                    <a href="{{route('backend.users.edit',$user->id)}}" type="submit" class="btn btn-info">
+                    <a href="{{route('backend.posts.edit',$post->id)}}" type="submit" class="btn btn-info">
                         <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                     </a>
                 </td>
         
                <!-- //Nút xóa-->
                 <td>
-                    <form action="{{ route('backend.users.delete',$user['id']) }}" method="POST">
+                    <form action="{{ route('backend.posts.delete',$post['id']) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger">
@@ -79,7 +70,7 @@
                         </tbody>
                     </table>
                 </div>
-                {!! $users->links() !!}
+                {!! $posts->links() !!}
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->

@@ -22,9 +22,16 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         $products = Product::paginate(5);
+
+        foreach($products as $product){
+            $category = Category::find($product->category_id);
+            // dd($product->category_id);
+            $product->category_id = $category ? $category->name : "Đang cập nhật";
+        }
         return view('backend.products.index')->with([
-            'products' => $products
+            'products' => $products,
         ]);
     }
 

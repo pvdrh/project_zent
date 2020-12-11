@@ -132,7 +132,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <a href="{{ route('backend.products.index') }}" class="btn btn-default">Huỷ bỏ</a>
+                        <a href="{{ route('backend.products.index') }}" class="btn btn-danger">Huỷ bỏ</a>
                         <button type="submit" class="btn btn-success">Tạo mới</button>
                     </div>
             </div>

@@ -42,7 +42,8 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-sucess">Cập Nhật</button>
+                        <a href="{{ route('backend.categories.index') }}" class="btn btn-danger">Huỷ bỏ</a>
+                        <button type="submit" class="btn btn-success">Cập Nhật</button>
                     </div>
                 </form>
             </div>

@@ -1,26 +1,7 @@
 @extends('backend.layouts.master')
 
-@section('content-header')
-
 @section('title')
     Quản Lý Sản Phẩm
-@endsection
-
-<!-- Content Header -->
-<div class="container-fluid">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Danh sách sản phẩm</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                <li class="breadcrumb-item active">Danh sách</li>
-            </ol>
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-</div><!-- /.container-fluid -->
 @endsection
 
 @section('content')
@@ -58,12 +39,13 @@
                             <th>ID</th>
                             <th>Nhãn Hiệu</th>
                             <th>Tên sản phẩm</th>
-                            <th>Thời gian</th>
                             <th>Số Lượng</th>
-                            <th>Trạng Thái</th>
+                            <th>Thời gian</th>
                             <th>Giá Gốc</th>
-                            <th>Giá Khuyến Mãi</th>
-                            <th>Mô tả</th>
+                            <th>Giá Bán</th>
+                            <th>Trạng Thái</th>
+                            <th>Mô Tả</th>
+                            <th>Danh Mục</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,12 +54,21 @@
                                  <td>{{ $product->id }}</td>
                                  <td>{!!$product->model!!}</td>
                                  <td>{{ $product->name }}</td>
+                                 <td>{{ $product->quantity }}</td>
                                  <td>{{ $product->created_at }}</td>
-                                 <td>{{ $product->status }}</td>
                                  <td>{!!$product->origin_price!!}</td>
-                                 <td>{!!$product->discount_price!!}</td>
+                                 <td>{!!$product->sale_price!!}</td>
+                                 @if($product->status == 0)
+                                 <td>Đang nhập</td>
+                                 @endif
+                                 @if($product->status == 1)
+                                 <td>Mở bán</td>
+                                 @endif
+                                 @if($product->status == -1)
+                                 <td>Hết hàng</td>
+                                 @endif
                                  <td>{!!$product->content!!}</td>
-                                 <td>{{ $product->category_id }}</td>
+                                 <td>{{ $product->category_id}}</td>
                              </tr>
                              @endforeach
                         </tbody>

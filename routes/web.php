@@ -39,10 +39,15 @@ Route::group([
     ->name('backend.products.index');
     Route::get('/create', 'ProductController@create')
     ->name('backend.products.create');
-    Route::get('/edit', 'ProductController@edit')
+    Route::get('/edit{id}', 'ProductController@edit')
     ->name('backend.products.edit');
     Route::POST('/store', 'ProductController@store')
     ->name('backend.products.store');
+    Route::put('/update{id}', 'ProductController@update')
+    ->name('backend.products.update');
+    Route::delete('/delete{id}', 'ProductController@destroy')
+    ->name('backend.products.delete');
+    
     });
      //Quản lý người dùng
     Route::group(['prefix' => 'users'], function(){
@@ -54,6 +59,10 @@ Route::group([
     ->name('backend.users.edit');
     Route::POST('/store', 'UserController@store')
     ->name('backend.users.store');
+    Route::put('/update{id}', 'UserController@update')
+    ->name('backend.users.update');
+    Route::delete('/delete{id}', 'UserController@destroy')
+    ->name('backend.users.delete');
     });
 
     //Quản lý danh mục
@@ -71,6 +80,22 @@ Route::group([
     ->name('backend.categories.delete');
     Route::put('/update{id}', 'CategoryController@update')
     ->name('backend.categories.update');
+    });
+
+    //Quản lý bài viết
+    Route::group(['prefix' => 'posts'], function(){
+    Route::get('/', 'PostController@index')
+    ->name('backend.posts.index');
+    Route::get('/create', 'PostController@create')
+    ->name('backend.posts.create');
+    Route::get('/edit{id}', 'PostController@edit')
+    ->name('backend.posts.edit');
+    Route::POST('/store', 'PostController@store')
+    ->name('backend.posts.store');
+    Route::delete('/delete{id}', 'PostController@destroy')
+    ->name('backend.posts.delete');
+    Route::put('/update{id}', 'PostController@update')
+    ->name('backend.posts.update');
     });
 });
 

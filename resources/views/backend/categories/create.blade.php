@@ -40,7 +40,8 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-sucess">Tạo mới</button>
+                        <a href="{{ route('backend.categories.index') }}" class="btn btn-danger">Huỷ bỏ</a>
+                        <button type="submit" class="btn btn-success">Tạo mới</button>
                     </div>
                 </form>
             </div>
