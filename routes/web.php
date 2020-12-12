@@ -39,11 +39,11 @@ Route::group([
     ->name('backend.products.index');
     Route::get('/create', 'ProductController@create')
     ->name('backend.products.create');
-    Route::get('/edit{id}', 'ProductController@edit')
+    Route::get('/edit/{id}', 'ProductController@edit')
     ->name('backend.products.edit');
     Route::POST('/store', 'ProductController@store')
     ->name('backend.products.store');
-    Route::put('/update{id}', 'ProductController@update')
+    Route::put('/update/{id}', 'ProductController@update')
     ->name('backend.products.update');
     Route::delete('/delete{id}', 'ProductController@destroy')
     ->name('backend.products.delete');
@@ -109,20 +109,43 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/contact', 'HomeController@contact')->name('contact');
+    Route::get('/cart', 'CartController@index')->name('cart');
 
 
-    Route::get('/cart', 'CartController@index')
-    ->name('cart.index');
+   
     Route::post('/cart/add/{id}', 'CartController@add')
     ->name('cart.add');
 
-    Route::get('/product/detail', 'ProductController@index')
+    Route::get('/product/{slug}-{id}.html', 'ProductController@index')
     ->name('product.index');
 
+    Route::group([
+        'prefix' => 'Cart',
+    ], function () {
+        Route::post('/create/{cart}','CartController@store')->name('cart.store');
+        Route::get('/', 'CartController@index')->name('cart.index');
+        Route::put('{Cart}', 'CartController@update')->name('cart.update');
+        Route::delete('delete/{Cart}', 'CartController@delete')->name('cart.delete');
+        Route::delete('destroy', 'CartController@destroy')->name('cart.destroy');
+        Route::put('update/{Cart}','CartController@update')->name('cart.update');
+    });
 
-    //test
-    // Route::get('/product/{slug}-{id}.html', 'ProductController@index')
-    // ->name('product.index');
+    Route::group([
+        'prefix'=>'Checkout'
+    ], function () {
+        Route::get('/method','CheckoutController@index')->name('checkout.method');
+        Route::get('/get_method','CheckoutController@method')->name('checkout.get_method');
+        Route::get('/invoice','CheckoutController@invoice')->name('checkout.invoice');
+        Route::post('/store','CheckoutController@store')->name('checkout.store');
+    });
+
+    Route::group([
+        'prefix'=>'Blog'
+    ],function (){
+        Route::get('','HomeController@Blog')->name('blog');
+        // Route::get('{blog}','HomeController@Post')->name('post');
+
+    });
 
 });
 

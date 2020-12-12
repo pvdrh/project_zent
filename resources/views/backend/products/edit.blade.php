@@ -19,12 +19,14 @@
                 </div> 
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="post" action="{{ route('backend.products.store') }}" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{ route('backend.products.update',$product->id) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('put')
+
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
-                            <input type="text" name="name" class="form-control" id="" placeholder="Điền tên sản phẩm">
+                            <input type="text" name="name" class="form-control" id="" placeholder="Điền tên sản phẩm" value="{{$product->name}}">
                             @error('name')
                             <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                             @enderror
@@ -32,10 +34,10 @@
                         </div>
                         <div class="form-group">
                             <label>Danh mục sản phẩm</label>
-                            <select name="category_id" class="form-control select2" style="width: 100%;">
-                                <option>--Chọn danh mục---</option>
+                            <select name="category_id" class="form-control select2" style="width: 100%;" value="{{$product->category_id}}">
+                                <option value="">--Chọn danh mục---</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" @if($category->id == $product->category_id) selected @endif>{{ $category->name }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -46,7 +48,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Giá gốc</label>
-                                    <input type="text" name="origin_price" class="form-control" placeholder="Điền giá gốc">
+                                    <input type="text" name="origin_price" class="form-control" placeholder="Điền giá gốc" value="{{$product->origin_price}}">
                                     @error('origin_price')
                                     <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                     @enderror
@@ -55,7 +57,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Giá bán</label>
-                                    <input type="text" name="sale_price" class="form-control" placeholder="Điền giá bán">
+                                    <input type="text" name="sale_price" class="form-control" placeholder="Điền giá bán" value="{{$product->sale_price}}">
                                     @error('sale_price')
                                     <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                     @enderror
@@ -63,17 +65,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>Giảm giá</label>
-                                    <input type="text" name="discount_price" class="form-control" placeholder="Điền giảm giá">
-                                    @error('discount_price')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
                                     <label>Số Lượng</label>
-                                    <input type="number" name="quantity" class="form-control" placeholder="Điền số lượng">
+                                    <input type="number" name="quantity" class="form-control" placeholder="Điền số lượng" value="{{$product->quantity}}">
                                     @error('quantity')
                                     <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                     @enderror
@@ -83,7 +76,7 @@
                         <div class="col-6">
                                 <div class="form-group">
                                     <label>Nhãn hiệu</label>
-                                    <input type="text" name="model" class="form-control" placeholder="Điền nhãn hiệu">
+                                    <input type="text" name="model" class="form-control" placeholder="Điền nhãn hiệu" value="{{$product->model}}">
                                     @error('model')
                                     <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                     @enderror
@@ -92,7 +85,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                             <textarea class="textarea" name="content" placeholder="Place some text here"
-                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$product->content}}</textarea>
                                       @error('content')
                                       <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
                                       @enderror
@@ -101,7 +94,7 @@
                             <label for="exampleInputFile">Ảnh đại diện sản phẩm</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="avatar" multiple id="exampleInputFile">
+                                    <input type="file" class="custom-file-input" name="avatar" multiple id="exampleInputFile" value="{{$product->avatar}}">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
@@ -129,11 +122,19 @@
                         </div>
                         <div class="form-group">
                             <label>Trạng thái sản phẩm</label>
-                            <select name="status" class="form-control select2" style="width: 100%;">
-                                <option>--Chọn trạng thái---</option>
-                                <option value="0">Đang nhập</option>
-                                <option value="1">Mở bán</option>
-                                <option value="-1">Hết hàng</option>
+                            <select name="status" class="form-control select2" style="width: 100%;" value="{{$product->status}}">
+                                @if($product->status == 0){
+                                    <option value="1">Đang nhập</option>
+                                }
+                                @endif
+                                @if($product->status == 1){
+                                    <option value="1">Mở bán</option>
+                                }
+                                @endif
+                                @if($product->status == -1){
+                                    <option value="1">Hết hàng</option>
+                                }
+                                @endif
                             </select>
                             @error('status')
                             <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
@@ -144,7 +145,7 @@
 
                     <div class="card-footer">
                         <a href="{{ route('backend.products.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                        <button type="submit" class="btn btn-success">Tạo mới</button>
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
                     </div>
             </div>
         </div>

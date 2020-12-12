@@ -14,7 +14,7 @@ class CartController extends Controller
     public function index()
     {
         $items = Cart::content();
-// dd($items);
+
         return view('frontend.page.cart')->with(['items'=>$items]);
     }
 

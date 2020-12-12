@@ -28,9 +28,17 @@
                             <label for="exampleInputEmail1">Slug</label>
                             <input name="slug" type="text" class="form-control" id="" placeholder="Slug">
                         </div>
-                         <div class="form-group">
-                            <label for="exampleInputEmail1">Danh Mục Cha</label>
-                            <input name="parent_id" type="number" class="form-control" id="" placeholder="Danh mục cha">
+                        <div class="form-group">
+                            <label>Danh mục sản phẩm</label>
+                            <select name="category_id" class="form-control select2" style="width: 100%;">
+                                <option>--Chọn danh mục---</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Độ Sâu</label>

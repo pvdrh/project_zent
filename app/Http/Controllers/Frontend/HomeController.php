@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -93,4 +96,44 @@ class HomeController extends Controller
     {
         return view('frontend.page.contact');
     }
+
+    public function getCategories($parent_categories)
+    {
+        foreach ($parent_categories as $category) {
+            $count = Category::where('parent_id', $category->id)->count();
+            if ($count != 0) {
+                $category->has_child = true;
+                $sub = Category::where('parent_id', $category->id)->get();
+                $this->getCategories($sub);
+                $category->sub_category = $sub;
+            } else {
+                $category->sub_category = false;
+            }
+        }
+        return $parent_categories;
+    }
+
+    public function Blog()
+    {
+        $posts = Post::latest()->paginate(9);
+
+        return view('frontend.page.blog.blog')->with([
+            'posts' => $posts
+        ]);
+    }
+
+    // public function Post($id)
+    // {
+    //     $post = Post::find($id);
+    //     $count = Cache::increment($post->id);
+    //     if ($count>20){
+    //         $post->view += Cache::pull($post->id);
+    //         $post->save();
+    //     }
+    //     $posts = Post::paginate(6);
+    //     return view('frontend.page.blog.blog')->with([
+    //         'post' => $post,
+    //         'posts' => $posts
+    //     ]);
+    // }
 }

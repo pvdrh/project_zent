@@ -7,90 +7,60 @@
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5"> 
                         <div class="logo">
                              <a href="{{route('home')}}"><img src="/frontend/images/logo/4.png" alt="logo images"></a>
-                        </div>
+                        </div>      
                     </div>
                     <div class="col-md-7 col-lg-8 col-sm-5 col-xs-3">
                         <nav class="main__menu__nav hidden-xs hidden-sm">
                             <ul class="main__menu">
                                 <li class="drop"><a href="#">Khuyến Mãi</a>
-                                    <ul class="dropdown mega_dropdown">
-                                        <!-- Start Single Mega MEnu -->
-                                        <li><a class="mega__title" href="product-grid.html">Shop Pages</a>
-                                            <ul class="mega__item">
-                                                <li><a href="product-grid.html">Product Grid</a></li>
-                                                <li><a href="cart.html">cart</a></li>
-                                                <li><a href="checkout.html">checkout</a></li>
-                                                <li><a href="wishlist.html">wishlist</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Single Mega MEnu -->
-                                        <!-- Start Single Mega MEnu -->
-                                        <li><a class="mega__title" href="product-grid.html">Variable Product</a>
-                                            <ul class="mega__item">
-                                                <li><a href="#">Category</a></li>
-                                                <li><a href="#">My Account</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
-                                                <li><a href="cart.html">Shopping Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Single Mega MEnu -->
-                                        <!-- Start Single Mega MEnu -->
-                                        <li><a class="mega__title" href="product-grid.html">Product Types</a>
-                                            <ul class="mega__item">
-                                                <li><a href="#">Simple Product</a></li>
-                                                <li><a href="#">Variable Product</a></li>
-                                                <li><a href="#">Grouped Product</a></li>
-                                                <li><a href="#">Downloadable Product</a></li>
-                                                <li><a href="#">Simple Product</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Single Mega MEnu -->
-                                    </ul>
                                 </li>
                                 <li class="drop"><a href="#">Đồ Nội Thất</a>
                                     <ul class="dropdown mega_dropdown">
+                                        @foreach($categories_menu as $category)
+                                            @if($category->parent_id ==11)
+                                            @php
+                                               $parent_id = $category->id 
+                                            @endphp
+                                            <li><a class="mega__title" href="#">{{$category->name}}</a>
+                                                <ul class="mega__item">
+                                                    @foreach ($categories_menu as $value)
+                                                        @if($value->parent_id == $parent_id)
+                                                            <li><a href="">{{$value->name}}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                
+                                                </ul>
+                                            </li>
+                                            @endif
+                                        @endforeach
                                         <!-- Start Single Mega MEnu -->
-                                        <li><a class="mega__title" href="product-grid.html">Shop Pages</a>
-                                            <ul class="mega__item">
-                                                <li><a href="product-grid.html">Product Grid</a></li>
-                                                <li><a href="cart.html">cart</a></li>
-                                                <li><a href="checkout.html">checkout</a></li>
-                                                <li><a href="wishlist.html">wishlist</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Single Mega MEnu -->
-                                        <!-- Start Single Mega MEnu -->
-                                        <li><a class="mega__title" href="product-grid.html">Variable Product</a>
-                                            <ul class="mega__item">
-                                                <li><a href="#">Category</a></li>
-                                                <li><a href="#">My Account</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
-                                                <li><a href="cart.html">Shopping Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Single Mega MEnu -->
-                                        <!-- Start Single Mega MEnu -->
-                                        <li><a class="mega__title" href="product-grid.html">Product Types</a>
-                                            <ul class="mega__item">
-                                                <li><a href="#">Simple Product</a></li>
-                                                <li><a href="#">Variable Product</a></li>
-                                                <li><a href="#">Grouped Product</a></li>
-                                                <li><a href="#">Downloadable Product</a></li>
-                                                <li><a href="#">Simple Product</a></li>
-                                            </ul>
-                                        </li>
+                                        
+            
                                         <!-- End Single Mega MEnu -->
                                     </ul>
                                 </li>
                                 <li class="drop"><a href="#">Đồ Trang Trí</a>
-                                    <ul class="dropdown">
-                                        <li><a href="product-grid.html">Product Grid</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
+                                    <ul class="dropdown mega_dropdown">
+                                        @foreach($categories_menu as $category)
+                                            @if($category->parent_id ==12)
+                                            @php
+                                               $parent_id = $category->id 
+                                            @endphp
+                                            <li><a class="mega__title" href="#">{{$category->name}}</a>
+                                                <ul class="mega__item">
+                                                    @foreach ($categories_menu as $value)
+                                                        @if($value->parent_id == $parent_id)
+                                                            <li><a href="">{{$value->name}}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                
+                                                </ul>
+                                            </li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li class="drop"><a href="#">blog</a>
+                                <li class="drop"><a href="{{route('blog')}}">Bài Viết</a>
                                 </li>
                                 <li><a href="{{route('contact')}}">Liên Hệ</a></li>
                             </ul>
@@ -127,8 +97,7 @@
                                 <a href="#"><i class="icon-user icons"></i></a>
                             </div>
                             <div class="htc__shopping__cart">
-                                <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>
-                                <a href="#"><span class="htc__qua">2</span></a>
+                                <a href="{{route('cart')}}"><i class="icon-handbag icons"></i></a>
                             </div>
                         </div>
                     </div>

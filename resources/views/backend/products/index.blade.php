@@ -69,9 +69,28 @@
                                  @endif
                                  <td>{!!$product->content!!}</td>
                                  <td>{{ $product->category_id}}</td>
+
+                <!-- //Nút chỉnh sửa-->
+                <td>
+                    <a href="{{route('backend.products.edit',$product->id)}}" type="submit" class="btn btn-info">
+                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                    </a>
+                </td>
+        
+               <!-- //Nút xóa-->
+                <td>
+                    <form action="{{ route('backend.products.delete',$product['id']) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-btn fa-trash"></i>Xoá
+                        </button>
+                    </form>
+                </td>
                              </tr>
                              @endforeach
                         </tbody>
+
                     </table>
                 </div>
                 {!! $products->links() !!}

@@ -57,7 +57,9 @@
                                  @if($user->role == 3)
                                  <td>Cộng Tác Viên</td>
                                  @endif
-                                   <!-- //Nút chỉnh sửa-->
+                
+                
+                <!-- //Nút chỉnh sửa-->
                 <td>
                     <a href="{{route('backend.users.edit',$user->id)}}" type="submit" class="btn btn-info">
                         <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa

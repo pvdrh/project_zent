@@ -9,9 +9,9 @@
                     <div class="col-xs-12">
                         <div class="bradcaump__inner">
                             <nav class="bradcaump-inner">
-                              <a class="breadcrumb-item" href="index.html">Home</a>
+                              <a class="breadcrumb-item" href="index.html">Trang Chủ</a>
                               <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                              <span class="breadcrumb-item active">Blog Details</span>
+                              <span class="breadcrumb-item active">Bài Viết</span>
                             </nav>
                         </div>
                     </div>

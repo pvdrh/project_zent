@@ -51,61 +51,8 @@
                                     <td class="product-quantity"><input type="number" value="1" /></td>
                                     <td class="product-subtotal">£165.00</td>
                                     <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/2.jpg" alt="product img" /></a></td>
-                                    <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                        <ul  class="pro__prize">
-                                            <li class="old__prize">$82.5</li>
-                                            <li>$75.2</li>
-                                        </ul>
-                                    </td>
-                                    <td class="product-price"><span class="amount">£50.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1" /></td>
-                                    <td class="product-subtotal">£50.00</td>
-                                    <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/3.jpg" alt="product img" /></a></td>
-                                    <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                        <ul  class="pro__prize">
-                                            <li class="old__prize">$82.5</li>
-                                            <li>$75.2</li>
-                                        </ul>
-                                    </td>
-                                    <td class="product-price"><span class="amount">£50.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1" /></td>
-                                    <td class="product-subtotal">£50.00</td>
-                                    <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/4.jpg" alt="product img" /></a></td>
-                                    <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                        <ul  class="pro__prize">
-                                            <li class="old__prize">$82.5</li>
-                                            <li>$75.2</li>
-                                        </ul>
-                                    </td>
-                                    <td class="product-price"><span class="amount">£50.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1" /></td>
-                                    <td class="product-subtotal">£50.00</td>
-                                    <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="buttons-cart--inner">
-                                <div class="buttons-cart">
-                                    <a href="#">Tiếp Tục Mua Sắm</a>
-                                </div>
-                                <div class="buttons-cart checkout--btn">
-                                    <a href="#">Cập Nhật</a>
-                                    <a href="#">Thanh Toán</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -125,12 +72,10 @@
                                 <div class="cart__desk__list">
                                     <ul class="cart__desc">
                                         <li>Thành Tiền</li>
-                                        <li>Thuế</li>
                                         <li>Phí Giao Hàng</li>
                                     </ul>
                                     <ul class="cart__price">
                                         <li>$909.00</li>
-                                        <li>$9.00</li>
                                         <li>0</li>
                                     </ul>
                                 </div>
@@ -140,7 +85,7 @@
                                 </div>
                                 <ul class="payment__btn">
                                     <li class="active"><a href="#">Thanh Toán</a></li>
-                                    <li><a href="#">Tiếp Tục Mua Sắm</a></li>
+                                    <li><a href="{{route('home')}}">Tiếp Tục Mua Sắm</a></li>
                                 </ul>
                             </div>
                         </div>

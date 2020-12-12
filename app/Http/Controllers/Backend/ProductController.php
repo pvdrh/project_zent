@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
+use App\Http\Controllers\Backend\Auth;
 
 
 class ProductController extends Controller
@@ -57,93 +58,49 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        
-        //        $image = Image::find(5);
-        // $product = Product::find(2);
-        // $image = $product->images()->create([
-        //     'name' => 'test1',
-        //     'path' => 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
-        //     'slug' => 'hi',
-        //     'product_id' => '2'
-        // ]);
+       
+    $product = new Product();
+    
+    //Lưu avatar
+    $file = $request->file('avatar');
+    $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
+    $product->avatar = $path;
 
-
-//        if($request->hasFile('image')){
-//            //Cách 1 (nên dùng cách này)
-////            $file = $request->file('image');
-////            $path = Storage::disk('public')->putFileAs('image', $file, 'test' . $file->getClientOriginalName());
-//
-//            //Cách 2 lưu thẳng vào trong public
-//            $file = $request->file('image');
-//            $name = $file->getClientOriginalName();
-//            $file->move('image_2', $name);
-//
-//            //Lưu ảnh
-        //    $image = new Image();
-        //    $image->name = $file->getClientOriginalName();
-        //    $image->disk = 'public';
-        //    $image->path = $path;
-        //    $image->product_id = 1;
-        //    $image->save();
-//
-//            dd('OK');
-//        }else{
-//            dd('khong co');
-//        };
-
-        // if($request->hasFile('images')){
-        //     $files = $request->file('images');
-
-        //     foreach ($files as $file){
-        //         $name = $file->getClientOriginalName();
-        //         $file->move('image_5', $name);
-        //     }
-        // }
-
-        
-        
-        $product = new Product();
-       //Lưu avatar
-       $file = $request->file('avatar');
-       $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
-       $product->avatar = $path;
-
-      $product->model = $request->get('model');
-      $product->name = $request->get('name');
-      $product->quantity = $request->get('quantity');
-      $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
-      $product->category_id = $request->get('category_id');
-      $product->origin_price = $request->get('origin_price');
-      $product->sale_price = $request->get('sale_price');
-      $product->content = $request->get('content');
-      $product->status = $request->get('status');
-      $product->user_id = 1;
-      $product->save();
+    $product->model = $request->get('model');
+    $product->name = $request->get('name');
+    $product->quantity = $request->get('quantity');
+    $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+    $product->category_id = $request->get('category_id');
+    $product->origin_price = $request->get('origin_price');
+    $product->sale_price = $request->get('sale_price');
+    $product->content = $request->get('content');
+    $product->status = $request->get('status');
+    $product->user_id = 1;
+    $product->save();
 
  
   //Lưu ảnh của sản phẩm
-      if($request->hasFile('images')){
-      $images = $request->file('images');
-      foreach($images as $image){
-          $image = new Image();
-          $file = $request->file('avatar');
-          $image->product_id = $product->id;
-          $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
-          $image->name = $file->getClientOriginalName();
-          $image->path = $path;
-          $image->save();
-      }
-      }
+    if($request->hasFile('images')){
+    $images = $request->file('images');
+    foreach($images as $image){
+        $image = new Image();
+        $file = $request->file('avatar');
+        $image->product_id = $product->id;
+        $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
+        $image->name = $file->getClientOriginalName();
+        $image->path = $path;
+        $image->save();
+        }
+    }
      
-
-      $save =1;
-      if($save){
-          $request->session()->flash('status', 'Tạo thành công');
-      }
-      else{
-          $request->session()->flash('error', 'Tạo không thành công');
-      }
-      return redirect()->route('backend.products.index');
+    $save =1;
+    if($save){
+        $request->session()->flash('status', 'Tạo thành công');
+    }
+    else{
+        $request->session()->flash('error', 'Tạo không thành công');
+    }
+    return redirect()->route('backend.products.index');
     }
 
     /**
@@ -165,16 +122,22 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::get();
         $product = Product::find($id);
+        
+        return view('backend.products.edit')->with([
+            'product' => $product,
+            'categories' => $categories
+            ]);
 
-        $user = Auth::find(1);
+        // $user = Auth::find(1);
 
-        if($user->can('update', $products)){
-            dd('co ccccc');
-        }
-        else{
-            dd('khongggg');
-        }
+        // if($user->can('update', $products)){
+        //     dd('co ccccc');
+        // }
+        // else{
+        //     dd('khongggg');
+        // }
     }
 
     /**
@@ -186,7 +149,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+
+        $product = Product::find($id);
+        $product->model = $request->get('model');
+        $product->name = $request->get('name');
+        $product->quantity = $request->get('quantity');
+        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        $product->category_id = $request->get('category_id');
+        $product->origin_price = $request->get('origin_price');
+        $product->sale_price = $request->get('sale_price');
+        $product->content = $request->get('content');
+        $product->status = $request->get('status');
+        $product->user_id = 1;
+
+        
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('img');
+            $path = storage::disk('public')->putFileAs('img', $file, 'product' . $file->getClientOriginalName());
+            $product->img = $path;
+        }
+        $save = $product->save();
+
+        if ($save)
+            $request->session()->flash('success', 'Cập nhật thành công');
+        else
+            $request->session()->flash('error', 'Cập nhật thất bại');
+
+        return redirect()->route('backend.products.index');
     }
 
     /**
@@ -197,6 +187,13 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $images = Image::where('product_id',$product->id)->get();
+        foreach ($images as $image){
+            $image->delete();
+        }
+
+        $product->delete();
+        return redirect()->route('backend.products.index');
     }
 }
