@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -18,8 +19,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $products_new = Product::latest()->paginate(8);
+        $posts = Post::paginate(5);
       
-        return view('frontend.page.home');
+        return view('frontend.page.home')->with([
+            'products_new' => $products_new,
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -51,7 +57,10 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $product_detail = Product::find($id);
+        return view('frontend.page.product_detail')->with([
+        'product_detail' => $product_detail
+        ]);
     }
 
     /**
@@ -74,11 +83,7 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
-        //Cach mac dinh
-        // $categories = Category::get();
-        // Cache::put('Category', $categories, 60);
+       
     }
 
     /**
@@ -97,23 +102,13 @@ class HomeController extends Controller
         return view('frontend.page.contact');
     }
 
-    public function getCategories($parent_categories)
+    public function category()
     {
-        foreach ($parent_categories as $category) {
-            $count = Category::where('parent_id', $category->id)->count();
-            if ($count != 0) {
-                $category->has_child = true;
-                $sub = Category::where('parent_id', $category->id)->get();
-                $this->getCategories($sub);
-                $category->sub_category = $sub;
-            } else {
-                $category->sub_category = false;
-            }
-        }
-        return $parent_categories;
+
+        return view('frontend.page.category');
     }
 
-    public function Blog()
+    public function blog()
     {
         $posts = Post::latest()->paginate(9);
 
@@ -122,18 +117,8 @@ class HomeController extends Controller
         ]);
     }
 
-    // public function Post($id)
-    // {
-    //     $post = Post::find($id);
-    //     $count = Cache::increment($post->id);
-    //     if ($count>20){
-    //         $post->view += Cache::pull($post->id);
-    //         $post->save();
-    //     }
-    //     $posts = Post::paginate(6);
-    //     return view('frontend.page.blog.blog')->with([
-    //         'post' => $post,
-    //         'posts' => $posts
-    //     ]);
-    // }
+    public function showblog(){
+        $post = Post::find($id);
+    }
+ 
 }

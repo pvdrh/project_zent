@@ -21,11 +21,11 @@
                                             @php
                                                $parent_id = $category->id 
                                             @endphp
-                                            <li><a class="mega__title" href="#">{{$category->name}}</a>
+                                            <li><a class="mega__title" href="{{route('category')}}">{{$category->name}}</a>
                                                 <ul class="mega__item">
                                                     @foreach ($categories_menu as $value)
                                                         @if($value->parent_id == $parent_id)
-                                                            <li><a href="">{{$value->name}}</a></li>
+                                                            <li><a href="{{route('category')}}">{{$value->name}}</a></li>
                                                         @endif
                                                     @endforeach
                                                 
@@ -60,7 +60,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li class="drop"><a href="{{route('blog')}}">Bài Viết</a>
+                                <li class="drop"><a href="{{route('blog.index')}}">Bài Viết</a>
                                 </li>
                                 <li><a href="{{route('contact')}}">Liên Hệ</a></li>
                             </ul>
@@ -90,15 +90,25 @@
                     </div>
                     <div class="col-md-3 col-lg-2 col-sm-4 col-xs-4">
                         <div class="header__right">
+                            
+                            
+                            <div class="htc__shopping__cart">
+                                <a href="{{route('cart.index')}}"><i class="icon-handbag icons"></i></a>
+                            </div>
+
                             <div class="header__search search search__open">
                                 <a href="#"><i class="icon-magnifier icons"></i></a>
                             </div>
-                            <div class="header__account">
-                                <a href="#"><i class="icon-user icons"></i></a>
-                            </div>
-                            <div class="htc__shopping__cart">
-                                <a href="{{route('cart')}}"><i class="icon-handbag icons"></i></a>
-                            </div>
+                            @auth
+                            <form class="row" action="{{route('logout')}}" method="post">
+                                @csrf
+                                
+                                <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
+                            </form>
+                            @else
+                            <a href="{{route('form')}}">Đăng nhập</a>
+                            @endauth
+                            
                         </div>
                     </div>
                 </div>

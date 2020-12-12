@@ -37,12 +37,12 @@ class DashboardController extends Controller
         });
 
     
-
+        // $user = User::g($id);
         return view('backend.dashboard')->with([
             'users'=>$users,
             'categories'=>$categories,
             'orders'=>$orders,
-            'posts'=>$posts
+            'posts'=>$posts,
         ]);
     }
 }

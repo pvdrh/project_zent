@@ -24,8 +24,7 @@
 <div class="cart-main-area ptb--100 bg__white">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <form action="#">               
+            <div class="col-md-12 col-sm-12 col-xs-12">           
                     <div class="table-content table-responsive">
                         <table>
                             <thead>
@@ -38,20 +37,27 @@
                                     <th class="product-remove">Xóa</th>
                                 </tr>
                             </thead>
+                            @foreach ($items as $item)
                             <tbody>
                                 <tr>
                                     <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/1.jpg" alt="product img" /></a></td>
-                                    <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                        <ul  class="pro__prize">
-                                            <li class="old__prize">$82.5</li>
-                                            <li>$75.2</li>
-                                        </ul>
+                                    <td class="product-name"><a href="#">{{$item->name}}</a>
                                     </td>
-                                    <td class="product-price"><span class="amount">£165.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1" /></td>
-                                    <td class="product-subtotal">£165.00</td>
-                                    <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
+                                    <td class="product-price"><span class="amount">{{number_format($item->price)}} đ</span></td>
+                                    <td class="product-quantity"><input type="number" value="{{$item->qty}}" /></td>
+                                    <td class="product-subtotal">{{number_format($item->price * $item->qty)}} đ</td>
+                                    <td>
+                                        <form action="{{route('cart.delete',$item->rowId)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-btn fa-trash"></i>Xoá
+                                            </button>
+                                        </form>
+                                    </td>
+                                  
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                     <div class="row">
@@ -75,13 +81,13 @@
                                         <li>Phí Giao Hàng</li>
                                     </ul>
                                     <ul class="cart__price">
-                                        <li>$909.00</li>
+                                        <li>{{Cart::total()}} đ</li>
                                         <li>0</li>
                                     </ul>
                                 </div>
                                 <div class="cart__total">
                                     <span>Tổng Đơn Hàng</span>
-                                    <span>$918.00</span>
+                                    <span>{{Cart::total()}} đ</span>
                                 </div>
                                 <ul class="payment__btn">
                                     <li class="active"><a href="#">Thanh Toán</a></li>
@@ -90,7 +96,6 @@
                             </div>
                         </div>
                     </div>
-                </form> 
             </div>
         </div>
     </div>

@@ -20,24 +20,35 @@
                 <form role="form"  action="{{route('backend.users.update',$user->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
-
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên người dùng</label>
                             <input name="name" type="text" class="form-control" id="" placeholder="Tên người dùng" value="{{$user->name}}">
                         </div>
+                        @error('name')
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
                             <input name="email" type="email" class="form-control" id="" placeholder="Email" value="{{$user->email}}">
                         </div>
+                        @error('email')
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mật khẩu</label>
                             <input name="password" type="password" class="form-control" id="" placeholder="Mật khẩu" value="{{$user->password}}">
                         </div>
+                        @error('password')
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
                             <input name="phone" type="text" class="form-control" id="" placeholder="SĐT" value="{{$user->phone}}">
                         </div>
+                        @error('phone')
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa chỉ</label>
                             <input name="address" type="text" class="form-control" id="" placeholder="Địa chỉ" value="{{$user->address}}">
@@ -51,10 +62,6 @@
                                 @endif
                                 @if($user->role == 2){
                                     <option value="2">Người Dùng</option>
-                                }
-                                @endif
-                                @if($user->role == 3){
-                                    <option value="3">Cộng Tác Viên</option>
                                 }
                                 @endif
                             </select>

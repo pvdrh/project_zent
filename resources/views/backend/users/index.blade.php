@@ -54,10 +54,6 @@
                                  @if($user->role == 2)
                                  <td>Nhân Viên</td>
                                  @endif
-                                 @if($user->role == 3)
-                                 <td>Cộng Tác Viên</td>
-                                 @endif
-                
                 
                 <!-- //Nút chỉnh sửa-->
                 <td>

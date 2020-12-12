@@ -12,8 +12,6 @@
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="card">
-                
-               
                 <div class="card-header">
                     <h3 class="card-title">Bài Viết</h3>
                 </div> 

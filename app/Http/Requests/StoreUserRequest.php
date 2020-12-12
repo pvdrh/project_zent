@@ -24,7 +24,11 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:255',
+            'email' => 'required',
+            'password' => 'required|min:6|max:30',
+            'role' => 'required',
+            'phone' => 'required|max:10'
         ];
     }
 
@@ -33,22 +37,18 @@ class StoreUserRequest extends FormRequest
         return [
             'required' => ':attribute không được để trống',
             'min' => ':attribute không được nhỏ hơn :min',
-            'max' => ':attribute không được lớn hơn :max',
-            'numeric' => ':attribute phải là số',
-            'image[]' => ':attribute file bắt buộc'
+            'max' => ':attribute không được lớn hơn :max'
         ];
     }
  
     public function attributes()
     {
         return [
-            'name' => 'Tên sản phẩm',
-            'origin_price' => 'Giá sản phẩm',
-            'sale_price' => 'Giá bán',
-            'content' => 'Mô tả sản phẩm',
-            'image[]' => 'Ảnh sản phẩm',
-            'quantity' => 'Số Lượng sản phẩm',
-            'model' => 'Nhãn hiệu sản phẩm' 
+            'name' => 'Tên người dùng',
+            'role' => 'Quyền',
+            'phone' => 'SĐT',
+            'email' => 'Mail',
+            'password' => 'Mật khẩu'
         ];
     }
 }

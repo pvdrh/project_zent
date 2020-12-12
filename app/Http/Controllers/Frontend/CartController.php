@@ -18,17 +18,15 @@ class CartController extends Controller
         return view('frontend.page.cart')->with(['items'=>$items]);
     }
 
-    // public function add($id){
-    //     $product = Product::find($id);
-    //     dd($product);
-    //     // dd($id);
-    //     Cart::add($product->$id, $product->name, 1, $product->sale_price, 0);
+    public function add($id){
+        $product = Product::find($id);
+        Cart::add($product->id, $product->name, 1, $product->sale_price, 0);
 
-    //     return redirect()->route('frontend.page.cart');
-    // }
+        return redirect()->route('cart.index');
+    }
 
-    // public function remove($cart_id){
-    //     Cart::remove($cart_id);
-    //     return redirect()->route('frontend.page.cart');
-    // }
+    public function delete($cart_id){
+        Cart::remove($cart_id);
+        return redirect()->route('cart.index');
+    }
 }

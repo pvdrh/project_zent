@@ -24,10 +24,16 @@
                             <label for="exampleInputEmail1">Tên Danh Mục</label>
                             <input name="name" type="text" class="form-control" id="" placeholder="Tên danh mục">
                         </div>
+                        @error('name')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug</label>
                             <input name="slug" type="text" class="form-control" id="" placeholder="Slug">
                         </div>
+                        @error('slug')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label>Danh mục sản phẩm</label>
                             <select name="category_id" class="form-control select2" style="width: 100%;">
@@ -44,6 +50,9 @@
                             <label for="exampleInputEmail1">Độ Sâu</label>
                             <input name="depth" type="number" class="form-control" id="" placeholder="Danh mục cha">
                         </div>
+                        @error('depth')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        @enderror
                     </div>
                     <!-- /.card-body -->
 

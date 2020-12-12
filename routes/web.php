@@ -21,6 +21,9 @@ Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.for
 Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('form');
+Route::post('login', 'Auth\LoginController@login')->name('store');
+// Route::post('logout', 'Auth\LoginController@logoutt')->name('logoutt');
 
 
 
@@ -110,17 +113,17 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/contact', 'HomeController@contact')->name('contact');
     Route::get('/cart', 'CartController@index')->name('cart');
-
+    Route::get('/category', 'HomeController@category')->name('category');
 
    
     Route::post('/cart/add/{id}', 'CartController@add')
     ->name('cart.add');
 
-    Route::get('/product/{slug}-{id}.html', 'ProductController@index')
-    ->name('product.index');
+    Route::get('/product/{id}', 'HomeController@show')
+    ->name('product.detail');
 
     Route::group([
-        'prefix' => 'Cart',
+        'prefix' => 'cart',
     ], function () {
         Route::post('/create/{cart}','CartController@store')->name('cart.store');
         Route::get('/', 'CartController@index')->name('cart.index');
@@ -142,8 +145,8 @@ Route::group([
     Route::group([
         'prefix'=>'Blog'
     ],function (){
-        Route::get('','HomeController@Blog')->name('blog');
-        // Route::get('{blog}','HomeController@Post')->name('post');
+        Route::get('','BlogController@index')->name('blog.index');
+        Route::get('{id}','BlogController@show')->name('show.blog');
 
     });
 

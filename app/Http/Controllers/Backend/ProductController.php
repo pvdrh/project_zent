@@ -21,9 +21,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-
         $products = Product::paginate(5);
 
         foreach($products as $product){
@@ -58,39 +63,39 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-       
-    $product = new Product();
-    
-    //Lưu avatar
-    $file = $request->file('avatar');
-    $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
-    $product->avatar = $path;
-
-    $product->model = $request->get('model');
-    $product->name = $request->get('name');
-    $product->quantity = $request->get('quantity');
-    $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
-    $product->category_id = $request->get('category_id');
-    $product->origin_price = $request->get('origin_price');
-    $product->sale_price = $request->get('sale_price');
-    $product->content = $request->get('content');
-    $product->status = $request->get('status');
-    $product->user_id = 1;
-    $product->save();
-
- 
-  //Lưu ảnh của sản phẩm
-    if($request->hasFile('images')){
-    $images = $request->file('images');
-    foreach($images as $image){
-        $image = new Image();
+        $this->authorize('create', Product::class);
+        $product = new Product();
+        
+        //Lưu avatar
         $file = $request->file('avatar');
-        $image->product_id = $product->id;
-        $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
-        $image->name = $file->getClientOriginalName();
-        $image->path = $path;
-        $image->save();
-        }
+        $path = storage::disk('public')->putFileAs('avatar', $file, 'avatar' . $file->getClientOriginalName());
+        $product->avatar = $path;
+
+        $product->model = $request->get('model');
+        $product->name = $request->get('name');
+        $product->quantity = $request->get('quantity');
+        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        $product->category_id = $request->get('category_id');
+        $product->origin_price = $request->get('origin_price');
+        $product->sale_price = $request->get('sale_price');
+        $product->content = $request->get('content');
+        $product->status = $request->get('status');
+        $product->user_id = 1;
+        $product->save();
+
+    
+    //Lưu ảnh của sản phẩm
+        if($request->hasFile('images')){
+        $images = $request->file('images');
+        foreach($images as $image){
+            $image = new Image();
+            $file = $request->file('avatar');
+            $image->product_id = $product->id;
+            $path = storage::disk('public')->putFileAs('images', $file, 'product' . $file->getClientOriginalName());
+            $image->name = $file->getClientOriginalName();
+            $image->path = $path;
+            $image->save();
+            }
     }
      
     $save =1;
@@ -129,15 +134,6 @@ class ProductController extends Controller
             'product' => $product,
             'categories' => $categories
             ]);
-
-        // $user = Auth::find(1);
-
-        // if($user->can('update', $products)){
-        //     dd('co ccccc');
-        // }
-        // else{
-        //     dd('khongggg');
-        // }
     }
 
     /**
@@ -147,11 +143,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, $id)
     {
-        // dd($request->all());
+        // dd($request->all());   
 
         $product = Product::find($id);
+        $this->authorize('update', $product);
         $product->model = $request->get('model');
         $product->name = $request->get('name');
         $product->quantity = $request->get('quantity');
@@ -161,8 +158,6 @@ class ProductController extends Controller
         $product->sale_price = $request->get('sale_price');
         $product->content = $request->get('content');
         $product->status = $request->get('status');
-        $product->user_id = 1;
-
         
         if ($request->hasFile('avatar')) {
             $file = $request->file('img');
@@ -188,6 +183,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
+        $this->authorize('delete', $product);
         $images = Image::where('product_id',$product->id)->get();
         foreach ($images as $image){
             $image->delete();

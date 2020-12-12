@@ -58,13 +58,17 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        // return view('frontend.login.login');
         return view('frontend.page.customer.login');
     }
 
     public function logout(Request $request)
     {
+        $user = Auth::user();
         $this->guard()->logout();
-        return redirect()->route('login.form');
+        if($user->role == 1) return redirect()->route('login.form');
+        return redirect()->route('home');
+
     }
+
+
 }

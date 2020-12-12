@@ -50,7 +50,7 @@ return [
 
         'local2' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path('storage'),
         ],
 
         'public' => [

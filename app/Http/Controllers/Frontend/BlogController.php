@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class BlogController extends Controller
 {
@@ -14,7 +15,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::latest()->paginate(9);
+
+        return view('frontend.page.blog.blog')->with([
+            'posts' => $posts
+        ]);
     }
 
     /**

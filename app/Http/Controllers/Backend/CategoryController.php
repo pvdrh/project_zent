@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -17,6 +19,12 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $categories = Category::paginate(10); 
@@ -43,9 +51,11 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
+        $this->authorize('create', Category::class);
         $category = new Category();
+
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->parent_id = $request->parent_id;
@@ -90,9 +100,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
+        $this->authorize('update', $category);
         $category = Category::find($id);
+
         $category->name = $request->get('name');
         $category->slug = $request->get('slug');
         $category->parent_id = $request->get('parent_id');
@@ -116,7 +128,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('update', $category);
         $category = Category::find($id);
+        
         $products = Product::where('category_id',$category->id)->get();
         foreach ($products as $product){
             $product->category_id = null;

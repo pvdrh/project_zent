@@ -69,6 +69,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Slug</label>
+                            <input type="text" name="slug" class="form-control" id="" placeholder="slug">
+                            @error('slug')
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="col-6">
                                 <div class="form-group">
                                     <label>Nhãn hiệu</label>

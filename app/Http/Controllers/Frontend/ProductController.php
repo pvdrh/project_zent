@@ -11,6 +11,12 @@ class ProductController extends Controller
     public function index()
     {
       
-        return view('frontend.page.product_detail');
+    }
+
+    public function detail($id)
+    {
+      $product = Product::find($id);
+
+        return view('frontend.page.product_detail')->with(['product' => $product]);
     }
 }

@@ -41,8 +41,9 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        //
-    }
+        if($user->role == 0) return false;
+        else return true;
+    } 
 
     /**
      * Determine whether the user can update the model.
@@ -53,7 +54,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product)
     {
-        return $user->id === $product->user_id;
+        if ($user->id == $product->user_id || $user->role == 1) return true;
     }
 
     /**
@@ -65,7 +66,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        //
+        if($user->role == 1) return true;
     }
 
     /**
