@@ -25,7 +25,7 @@
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
                             <input type="text" name="name" class="form-control" id="" placeholder="Điền tên sản phẩm">
                             @error('name')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                             @error('category_id')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="row">
@@ -46,7 +46,7 @@
                                     <label>Giá gốc</label>
                                     <input type="text" name="origin_price" class="form-control" placeholder="Điền giá nhập">
                                     @error('origin_price')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                     <label>Giá bán</label>
                                     <input type="text" name="sale_price" class="form-control" placeholder="Điền giá bán">
                                     @error('sale_price')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -64,24 +64,17 @@
                                     <label>Số Lượng</label>
                                     <input type="number" name="quantity" class="form-control" placeholder="Điền số lượng">
                                     @error('quantity')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Slug</label>
-                            <input type="text" name="slug" class="form-control" id="" placeholder="slug">
-                            @error('slug')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="col-6">
                                 <div class="form-group">
                                     <label>Nhãn hiệu</label>
                                     <input type="text" name="model" class="form-control" placeholder="Điền nhãn hiệu">
                                     @error('model')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -90,7 +83,7 @@
                             <textarea class="textarea" name="content" placeholder="Place some text here"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                       @error('content')
-                                      <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                      <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                       @enderror
                                     </div>
                                     <div class="form-group">
@@ -105,7 +98,7 @@
                                 </div>
                             </div>
                             @error('image[]')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -120,7 +113,7 @@
                                 </div>
                             </div>
                             @error('image[]')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -132,7 +125,7 @@
                                 <option value="-1">Hết hàng</option>
                             </select>
                             @error('status')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

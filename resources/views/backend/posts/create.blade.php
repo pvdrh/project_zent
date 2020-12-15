@@ -24,26 +24,15 @@
                             <label for="exampleInputEmail1">Tiêu Đề Bài Viết</label>
                             <input type="text" name="title" class="form-control" id="" placeholder="Tiêu đề">
                             @error('title')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Slug</label>
-                                    <input type="text" name="slug" class="form-control" placeholder="Slug">
-                                    @error('slug')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>                
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nội Dung Bài Viết</label>
                             <textarea class="textarea" name="content" placeholder="Nội dung"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                       @error('content')
-                                      <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                      <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                       @enderror
                                     </div>
                                     <div class="form-group">
@@ -58,7 +47,7 @@
                                 </div>
                             </div>
                             @error('img')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     <!-- /.card-body -->

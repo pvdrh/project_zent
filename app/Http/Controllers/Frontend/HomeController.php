@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products_new = Product::latest()->paginate(8);
+        $products_new = Product::latest()->paginate(10);
         $posts = Post::paginate(5);
       
         return view('frontend.page.home')->with([

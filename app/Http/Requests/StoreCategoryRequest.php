@@ -25,8 +25,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'depth' => 'required',
-            'slug' => 'required'
+            'depth' => 'required'
         ];
     }
 
@@ -42,7 +41,6 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => 'Tên danh mục',
-            'slug' => 'slug',
             'depth' => 'Độ sâu',
         ];
     }

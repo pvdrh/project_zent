@@ -25,14 +25,7 @@
                             <input name="name" type="text" class="form-control" id="" placeholder="Tên danh mục">
                         </div>
                         @error('name')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
-                            @enderror
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Slug</label>
-                            <input name="slug" type="text" class="form-control" id="" placeholder="Slug">
-                        </div>
-                        @error('slug')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label>Danh mục sản phẩm</label>
@@ -43,7 +36,7 @@
                                 @endforeach
                             </select>
                             @error('category_id')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -51,7 +44,7 @@
                             <input name="depth" type="number" class="form-control" id="" placeholder="Danh mục cha">
                         </div>
                         @error('depth')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <!-- /.card-body -->

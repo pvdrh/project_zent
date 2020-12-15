@@ -17,6 +17,7 @@ class CreateOrderTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('money');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -3,16 +3,20 @@
 @section('home')
 
  <!-- Start Bradcaump area -->
- <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
+ <div class="ht__bradcaump__area" style="background: rgb(212,147,180);
+ background: -moz-radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+ background: -webkit-radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+ background: radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d493b4",endColorstr="#ff597b",GradientType=1);">
     <div class="ht__bradcaump__wrap"    >
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="bradcaump__inner">
                         <nav class="bradcaump-inner">
-                          <a class="breadcrumb-item" href="index.html">Trang Chủ</a>
+                          <a class="breadcrumb-item" href="{{route('home')}}">Trang Chủ</a>
                           <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                          <a class="breadcrumb-item" href="product-grid.html">Sản Phẩm</a>
+                          <a class="breadcrumb-item" href="{{route('category')}}">Sản Phẩm</a>
                           <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
                           <span class="breadcrumb-item active">{{$product_detail->model}}</span>
                         </nav>
@@ -24,7 +28,7 @@
 </div>
 <!-- End Bradcaump area -->
           <!-- Start Product Details Area -->
-          @for($i=0;$i<100;$i+=2)
+          @for($i=0;$i<1;$i++)
           <section class="htc__product__details bg__white ptb--100">
             <!-- Start Product Details Top -->
             <div class="htc__product__details__top">
@@ -36,42 +40,17 @@
                                 <div class="product__big__images">
                                     <div class="portfolio-full-image tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="img-tab-1">
-                                            <img src="images/product-2/big-img/1.jpg" alt="full-image">
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="img-tab-2">
-                                            <img src="images/product-2/big-img/2.jpg" alt="full-image">
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="img-tab-3">
-                                            <img src="images/product-2/big-img/3.jpg" alt="full-image">
+                                            <img src="{{asset('storage/'. $product_detail->avatar)}}" alt="full-image">
                                         </div>
                                     </div>
                                 </div>
                                 <!-- End Product Big Images -->
-                                <!-- Start Small images -->
-                                <ul class="product__small__images" role="tablist">
-                                    <li role="presentation" class="pot-small-img active">
-                                        <a href="#img-tab-1" role="tab" data-toggle="tab">
-                                            <img src="images/product-2/sm-img-3/3.jpg" alt="small-image">
-                                        </a>
-                                    </li>
-                                    <li role="presentation" class="pot-small-img">
-                                        <a href="#img-tab-2" role="tab" data-toggle="tab">
-                                            <img src="images/product-2/sm-img-3/1.jpg" alt="small-image">
-                                        </a>
-                                    </li>
-                                    <li role="presentation" class="pot-small-img">
-                                        <a href="#img-tab-3" role="tab" data-toggle="tab">
-                                            <img src="images/product-2/sm-img-3/2.jpg" alt="small-image">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- End Small images -->
                             </div>
                         </div>
                         <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 smt-40 xmt-40">
                             <div class="ht__product__dtl">
                                 <h2>{{$product_detail->name}}</h2>
-                                <h6>Model: <span>{{$product_detail->model}}</span></h6>
+                                <h6>Nhãn Hiệu: <span>{{$product_detail->model}}</span></h6>
                                 <ul class="rating">
                                     <li><i class="icon-star icons"></i></li>
                                     <li><i class="icon-star icons"></i></li>
@@ -80,80 +59,43 @@
                                     <li class="old"><i class="icon-star icons"></i></li>
                                 </ul>
                                 <ul  class="pro__prize">
-                                    <li class="old__prize">{{$product_detail->origin_price}}</li>
-                                    <li>{{$product_detail->sale_price}}</li>
+                                    <li>{{number_format($product_detail->sale_price)}} đ</li>
                                 </ul>
-                                <p class="pro__info">{!!$product_detail->content!!}</p>
                                 <div class="ht__pro__desc">
                                     <div class="sin__desc">
                                         @if($product_detail->status == 1)
-                                        <p><span>Availability:</span>
+                                        <p><span>Tình Trạng:</span>
                                             Còn Hàng
                                         </p>
                                         @endif
                                         @if($product_detail->status == 2)
-                                        <p><span>Availability:</span>
+                                        <p><span>Tình Trạng:</span>
                                             Hết Hàng
                                         </p>
                                     @endif
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>color:</span></p>
-                                        <ul class="pro__color">
-                                            <li class="red"><a href="#">red</a></li>
-                                            <li class="green"><a href="#">green</a></li>
-                                            <li class="balck"><a href="#">balck</a></li>
-                                        </ul>
-                                        <div class="pro__more__btn">
-                                            <a href="#">more</a>
+                                    <form class="" action="{{route('cart.add',$product_detail->id)}}" method="post">
+                                        @csrf
+                                        <div class="sin__desc align--left">
+                                            <p><span>Số Lượng</span></p>
+                                            <select name="quantity" class="select__size">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
                                         </div>
+                                        <div class="sin__desc align--left">
+                                            <button type="submit" class="btn btn-outline-success">Thêm Vào Giỏ Hàng</button>
+                                        </div>
+                                        
+                                    </form>
 
-                                        <form class="row" action="{{route('cart.add',$product_detail->id)}}" method="post">
-                                            @csrf
-                                            <div class="col-md-4">
-                                            </div>
-                                            <button type="submit" class="btn btn-outline-success">Thêm Sản Phẩm</button>
-                                        </form>
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>Số Lượng</span></p>
-                                        <select class="select__size">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                        </select>
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>Categories:</span></p>
-                                        <ul class="pro__cat__list">
-                                            <li><a href="#">Fashion,</a></li>
-                                            <li><a href="#">Accessories,</a></li>
-                                            <li><a href="#">Women,</a></li>
-                                            <li><a href="#">Men,</a></li>
-                                            <li><a href="#">Kid,</a></li>
-                                            <li><a href="#">Mobile,</a></li>
-                                            <li><a href="#">Computer,</a></li>
-                                            <li><a href="#">Hair,</a></li>
-                                            <li><a href="#">Clothing,</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>Product tags:</span></p>
-                                        <ul class="pro__cat__list">
-                                            <li><a href="#">Fashion,</a></li>
-                                            <li><a href="#">Accessories,</a></li>
-                                            <li><a href="#">Women,</a></li>
-                                            <li><a href="#">Men,</a></li>
-                                            <li><a href="#">Kid,</a></li>
-                                        </ul>
-                                    </div>
 
                                     <div class="sin__desc product__share__link">
                                         <p><span>Chia Sẻ:</span></p>
@@ -162,7 +104,7 @@
 
                                             <li><a href="#" target="_blank"><i class="icon-social-instagram icons"></i></a></li>
 
-                                            <li><a href="https://www.facebook.com/Furny/?ref=bookmarks" target="_blank"><i class="icon-social-facebook icons"></i></a></li>
+                                            <li><a href="#" target="_blank"><i class="icon-social-facebook icons"></i></a></li>
 
                                             <li><a href="#" target="_blank"><i class="icon-social-google icons"></i></a></li>
 
@@ -200,36 +142,21 @@
                             <!-- Start Single Content -->
                             <div role="tabpanel" id="description" class="pro__single__content tab-pane fade in active">
                                 <div class="pro__tab__content__inner">
-                                    <p>Formfitting clothing is all about a sweet spot. That elusive place where an item is tight but not clingy, sexy but not cloying, cool but not over the top. Alexandra Alvarez’s label, Alix, hits that mark with its range of comfortable, minimal, and neutral-hued bodysuits.</p>
-                                    <h4 class="ht__pro__title">Description</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-                                    <h4 class="ht__pro__title">Standard Featured</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in</p>
+                                    <p class="pro__info">{!!$product_detail->content!!}</p>
                                 </div>
                             </div>
                             <!-- End Single Content -->
                             <!-- Start Single Content -->
                             <div role="tabpanel" id="review" class="pro__single__content tab-pane fade">
                                 <div class="pro__tab__content__inner">
-                                    <p>Formfitting clothing is all about a sweet spot. That elusive place where an item is tight but not clingy, sexy but not cloying, cool but not over the top. Alexandra Alvarez’s label, Alix, hits that mark with its range of comfortable, minimal, and neutral-hued bodysuits.</p>
-                                    <h4 class="ht__pro__title">Description</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-                                    <h4 class="ht__pro__title">Standard Featured</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem</p>
+                                   <p>Đang cập nhật...</p>
                                 </div>
                             </div>
                             <!-- End Single Content -->
                             <!-- Start Single Content -->
                             <div role="tabpanel" id="shipping" class="pro__single__content tab-pane fade">
                                 <div class="pro__tab__content__inner">
-                                    <p>Formfitting clothing is all about a sweet spot. That elusive place where an item is tight but not clingy, sexy but not cloying, cool but not over the top. Alexandra Alvarez’s label, Alix, hits that mark with its range of comfortable, minimal, and neutral-hued bodysuits.</p>
-                                    <h4 class="ht__pro__title">Description</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-                                    <h4 class="ht__pro__title">Standard Featured</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem</p>
+                                  <p> 300k trên mỗi đơn hàng chưa bao gồm phí lắp đặt </p>
                                 </div>
                             </div>
                             <!-- End Single Content -->

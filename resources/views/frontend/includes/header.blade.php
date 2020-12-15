@@ -96,17 +96,16 @@
                                 <a href="{{route('cart.index')}}"><i class="icon-handbag icons"></i></a>
                             </div>
 
-                            <div class="header__search search search__open">
-                                <a href="#"><i class="icon-magnifier icons"></i></a>
-                            </div>
                             @auth
-                            <form class="row" action="{{route('logout')}}" method="post">
+                            <form style="margin:10px" class="row" action="{{route('logout')}}" method="post">
                                 @csrf
                                 
                                 <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
                             </form>
                             @else
+                            <form class="row" style="margin:10px">
                             <a href="{{route('form')}}">Đăng nhập</a>
+                        </form>
                             @endauth
                             
                         </div>

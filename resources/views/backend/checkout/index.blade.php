@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    Quản Lý Bài Viết
+    Quản Lý Đơn Hàng
 @endsection
 
 @section('content')
@@ -13,8 +13,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Danh sách bài viết</h3>
-
+                    <h3 class="card-title">Đơn Hàng</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -31,30 +30,32 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tiêu Đề</th>
-                            <th>Ảnh</th>
-                            <th>Thời Gian</th>
+                            <th>Số Lượng</th>
+                            <th>Thời gian</th>
+                            <th>Trạng Thái</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $post)
+                            {{-- @foreach($products as $product)
                             <tr>
-                                 <td>{{ $post->id }}</td>
-                                 <td>{{ $post->title }}</td>
-                                 <td>{{ $post->img }}</td>
-                                 <td>{{ $post->created_at }}</td>
-                                 
-                
-                    <!-- //Nút chỉnh sửa-->
+                                 <td>{{ $product->id }}</td>
+                                 <td>{!!$product->model!!}</td>
+                                 <td>{{ $product->name }}</td>
+                                 <td>{{ $product->quantity }}</td>
+                                 <td>{{ $product->created_at }}</td>
+                                 <td>{{number_format($product->origin_price)}} đ</td>
+                                 <td>{{number_format($product->sale_price)}} đ</td>
+
+                <!-- //Nút chỉnh sửa-->
                 <td>
-                    <a href="{{route('backend.posts.edit',$post->id)}}" type="submit" class="btn btn-info">
+                    <a href="#" type="submit" class="btn btn-info">
                         <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                     </a>
                 </td>
         
                <!-- //Nút xóa-->
                 <td>
-                    <form action="{{ route('backend.posts.delete',$post['id']) }}" method="POST">
+                    <form action="#" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger">
@@ -63,17 +64,17 @@
                     </form>
                 </td>
                              </tr>
-                             @endforeach
+                             {{-- @endforeach --}}
                         </tbody>
+
                     </table>
                 </div>
-                {!! $posts->links() !!}
+                {{-- {!! $products->links() !!} --}}
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
         </div>
-    </div>
+    </div>  
     <!-- /.row (main row) -->
-</div>
-<!-- /.container-fluid -->
+</div><!-- /.container-fluid -->
 @endsection

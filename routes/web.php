@@ -114,11 +114,8 @@ Route::group([
     Route::get('/contact', 'HomeController@contact')->name('contact');
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::get('/category', 'HomeController@category')->name('category');
-
-   
     Route::post('/cart/add/{id}', 'CartController@add')
     ->name('cart.add');
-
     Route::get('/product/{id}', 'HomeController@show')
     ->name('product.detail');
 
@@ -136,19 +133,15 @@ Route::group([
     Route::group([
         'prefix'=>'Checkout'
     ], function () {
-        Route::get('/method','CheckoutController@index')->name('checkout.method');
-        Route::get('/get_method','CheckoutController@method')->name('checkout.get_method');
-        Route::get('/invoice','CheckoutController@invoice')->name('checkout.invoice');
-        Route::post('/store','CheckoutController@store')->name('checkout.store');
+        Route::get('/checkout','CheckoutController@index')->name('checkout.index');
+        Route::post('/store', 'CheckoutController@store')->name('checkout.store');
     });
 
     Route::group([
-        'prefix'=>'Blog'
+        'prefix'=>'blog'
     ],function (){
         Route::get('','BlogController@index')->name('blog.index');
-        Route::get('{id}','BlogController@show')->name('show.blog');
-
+        Route::get('/{id}','BlogController@show')->name('show.blog');
     });
-
 });
 

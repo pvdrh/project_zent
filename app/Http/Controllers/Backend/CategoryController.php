@@ -57,7 +57,7 @@ class CategoryController extends Controller
         $category = new Category();
 
         $category->name = $request->name;
-        $category->slug = $request->slug;
+        $category->slug = \Illuminate\Support\Str::slug($request->get('name'));
         $category->parent_id = $request->parent_id;
         $category->depth = $request->depth;
         $save = $category->save();
@@ -106,7 +106,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $category->name = $request->get('name');
-        $category->slug = $request->get('slug');
+        $category->slug = \Illuminate\Support\Str::slug($request->get('name'));
         $category->parent_id = $request->get('parent_id');
         $category->depth = $request->get('depth');
 

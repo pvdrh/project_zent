@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Order;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
-class BlogController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +16,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(9);
-
-        return view('frontend.page.blog.blog')->with([
-            'posts' => $posts
+        
+        $items = Cart::instance('shopping')->content();
+        return view('frontend.page.checkout.invoice', [
+            'items' => $items,
         ]);
     }
 
@@ -40,7 +41,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
     }
 
     /**
@@ -51,11 +52,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('frontend.page.blog.blog_detail')->with([
-        'post' => $post
-        ]);
-
+        //
     }
 
     /**

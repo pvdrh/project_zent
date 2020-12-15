@@ -2,14 +2,18 @@
 
 @section('home')
    <!-- Start Bradcaump area -->
-   <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(frontend/images/banner/2.jpg) no-repeat scroll center center / cover ;">
+   <div class="ht__bradcaump__area" style="background: rgb(212,147,180);
+   background: -moz-radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+   background: -webkit-radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+   background: radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d493b4",endColorstr="#ff597b",GradientType=1);">
     <div class="ht__bradcaump__wrap">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="bradcaump__inner">
                         <nav class="bradcaump-inner">
-                          <a class="breadcrumb-item" href="index.html">Trang Chủ</a>
+                          <a class="breadcrumb-item" href="{{route('home')}}">Trang Chủ</a>
                           <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
                           <span class="breadcrumb-item active">Giỏ Hàng</span>
                         </nav>
@@ -40,7 +44,7 @@
                             @foreach ($items as $item)
                             <tbody>
                                 <tr>
-                                    <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/1.jpg" alt="product img" /></a></td>
+                                    <td class="product-thumbnail"><a href="#"><img src="#" alt="product img" /></a></td>
                                     <td class="product-name"><a href="#">{{$item->name}}</a>
                                     </td>
                                     <td class="product-price"><span class="amount">{{number_format($item->price)}} đ</span></td>
@@ -90,7 +94,7 @@
                                     <span>{{Cart::total()}} đ</span>
                                 </div>
                                 <ul class="payment__btn">
-                                    <li class="active"><a href="#">Thanh Toán</a></li>
+                                    <li class="active"><a href="{{route('checkout.index')}}">Thanh Toán</a></li>
                                     <li><a href="{{route('home')}}">Tiếp Tục Mua Sắm</a></li>
                                 </ul>
                             </div>

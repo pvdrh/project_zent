@@ -63,9 +63,11 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        
         $user = Auth::user();
+        $role = $user->role;
         $this->guard()->logout();
-        if($user->role == 1) return redirect()->route('login.form');
+        if($role == 1) return redirect()->route('login.form');
         return redirect()->route('home');
 
     }

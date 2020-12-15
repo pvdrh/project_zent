@@ -44,7 +44,6 @@
                             <th>Giá Gốc</th>
                             <th>Giá Bán</th>
                             <th>Trạng Thái</th>
-                            <th>Mô Tả</th>
                             <th>Danh Mục</th>
                         </tr>
                         </thead>
@@ -56,8 +55,8 @@
                                  <td>{{ $product->name }}</td>
                                  <td>{{ $product->quantity }}</td>
                                  <td>{{ $product->created_at }}</td>
-                                 <td>{!!$product->origin_price!!}</td>
-                                 <td>{!!$product->sale_price!!}</td>
+                                 <td>{{number_format($product->origin_price)}} đ</td>
+                                 <td>{{number_format($product->sale_price)}} đ</td>
                                  @if($product->status == 0)
                                  <td>Đang nhập</td>
                                  @endif
@@ -67,7 +66,6 @@
                                  @if($product->status == -1)
                                  <td>Hết hàng</td>
                                  @endif
-                                 <td>{!!$product->content!!}</td>
                                  <td>{{ $product->category_id}}</td>
 
                 <!-- //Nút chỉnh sửa-->

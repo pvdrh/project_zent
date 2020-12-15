@@ -122,36 +122,7 @@ class UserController extends Controller
         return redirect()->route('backend.users.index');
     }
 
-    public function test(){
-        //        $user = User::find(1);
-        //        $userInfo = $user->userInfo;
-        //        dd($userInfo->fullname);
-
-        //        $user_info = UserInfo::find(1);
-        //        $user = $user_info->user;
-        //        $products = Category::find(1)->products()->where('status', 1)->get();
-        //        dd($products);
-
-        //        $product = Product::find(1);
-        //        $category = Category::find(4);
-        //
-        //        $productSaved = $category->products()->save($product);
-
-        //        $category = Category::find(5);
-
-        //        $product = $category->products()->create([
-        //            'name' => 'san pham create 4',
-        //            'origin_price' => '10000',
-        //            'slug' => 'hi',
-        //            'content' => 'hello ae',
-        //            'origin_price' => '100',
-        //            'sale_price' => '5000',
-        //            'discount_price' => 1100000,
-        //            'content' => 'Noi dung demo',
-        //            'user_id' => 1,
-        //            'status'=>1
-        //        ]);
-        //        dd($user->email);
+    
 
         //        $product = Product::find(1);
         //        $orders = $product->orders;
@@ -192,4 +163,4 @@ class UserController extends Controller
                 // xóa tất cả sản phẩm ra khỏi shop
                 // $order->products()->detach();
             }
-}
+

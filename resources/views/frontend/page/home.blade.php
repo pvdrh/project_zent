@@ -72,7 +72,7 @@
                 <div class="htc__product__container">
                     <div class="row">
                         <div class="product__list clearfix mt--30">
-                            @for($i=0;$i<sizeof($products_new);$i+=2)
+                            @for($i=0;$i<sizeof($products_new);$i++)
                             <!-- Start Single Category -->
                             <div class="col-md-4 col-lg-3 col-sm-4 col-xs-12">
                                 <div class="category">
@@ -89,10 +89,9 @@
                                         </ul>
                                     </div>
                                     <div class="fr__product__inner">
-                                        <h4><a href="product-details.html">{{$products_new[$i]->id}}</a></h4>
+                                        <h4><a href="product-details.html">{{$products_new[$i]->name}}</a></h4>
                                         <ul class="fr__pro__prize">
-                                            <li class="old__prize">{{$products_new[$i]->origin_price}}</li>
-                                            <li>{{$products_new[$i]->sale_price}}</li>
+                                            <li>{{number_format($products_new[$i]->sale_price)}} đ</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -139,12 +138,12 @@
                 </div>
                 <div class="row">
                     <div class="ht__blog__wrap clearfix">
-                        @for($i=0;$i<sizeof($posts);$i+=2)
+                        @for($i=0;$i<sizeof($posts);$i++)
                         <!-- Start Single Blog -->
                         <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
                             <div class="blog">
                                 <div class="blog__thumb">
-                                    <a href="blog-details.html">
+                                    <a href="{{route('show.blog',$posts[$i]->id)}}">
                                         <img src="storage/{{$posts[$i]->img}}" alt="blog images">
                                     </a>
                                 </div>
@@ -152,10 +151,9 @@
                                     <div class="bl__date">
                                         <span>{{$posts[$i]->created_at}}</span>
                                     </div>
-                                    <h2><a href="blog-details.html">{{$posts[$i]->title}}</a></h2>
-                                    <p>{!!$posts[$i]->content!!}</p>
+                                    <h2><a href="{{route('show.blog',$posts[$i]->id)}}">{{$posts[$i]->title}}</a></h2>
                                     <div class="blog__btn">
-                                        <a href="blog-details.html">Read More</a>
+                                        <a href="{{route('show.blog',$posts[$i]->id)}}">Đọc thêm</a>
                                     </div>
                                 </div>
                             </div>

@@ -28,7 +28,7 @@
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
                             <input type="text" name="name" class="form-control" id="" placeholder="Điền tên sản phẩm" value="{{$product->name}}">
                             @error('name')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
 
                         </div>
@@ -41,7 +41,7 @@
                                 @endforeach
                             </select>
                             @error('category_id')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="row">
@@ -50,7 +50,7 @@
                                     <label>Giá gốc</label>
                                     <input type="text" name="origin_price" class="form-control" placeholder="Điền giá gốc" value="{{$product->origin_price}}">
                                     @error('origin_price')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <label>Giá bán</label>
                                     <input type="text" name="sale_price" class="form-control" placeholder="Điền giá bán" value="{{$product->sale_price}}">
                                     @error('sale_price')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     <label>Số Lượng</label>
                                     <input type="number" name="quantity" class="form-control" placeholder="Điền số lượng" value="{{$product->quantity}}">
                                     @error('quantity')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                     <label>Nhãn hiệu</label>
                                     <input type="text" name="model" class="form-control" placeholder="Điền nhãn hiệu" value="{{$product->model}}">
                                     @error('model')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             <textarea class="textarea" name="content" placeholder="Place some text here"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$product->content}}</textarea>
                                       @error('content')
-                                      <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                                      <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                                       @enderror
                                     </div>
                                     <div class="form-group">
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                             @error('image[]')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             @error('image[]')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -137,7 +137,7 @@
                                 @endif
                             </select>
                             @error('status')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

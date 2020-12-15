@@ -27,20 +27,9 @@
                             <label for="exampleInputEmail1">Tiêu Đề</label>
                             <input type="text" name="title" class="form-control" id="" placeholder="Tiêu đề bài viết" value="{{$post->title}}">
                             @error('title')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
 
-                        </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Slug</label>
-                                    <input type="text" name="slug" class="form-control" placeholder="slug" value="{{$post->slug}}">
-                                    @error('slug')
-                                    <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                    
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả</label>
@@ -61,7 +50,7 @@
                                 </div>
                             </div>
                             @error('img')
-                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                            <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

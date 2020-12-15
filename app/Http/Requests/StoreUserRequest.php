@@ -26,7 +26,6 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'email' => 'required',
-            'password' => 'required|min:6|max:30',
             'role' => 'required',
             'phone' => 'required|max:10'
         ];
@@ -47,8 +46,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'Tên người dùng',
             'role' => 'Quyền',
             'phone' => 'SĐT',
-            'email' => 'Mail',
-            'password' => 'Mật khẩu'
+            'email' => 'Mail'
         ];
     }
 }

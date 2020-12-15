@@ -26,28 +26,28 @@
                             <input name="name" type="text" class="form-control" id="" placeholder="Tên người dùng" value="{{$user->name}}">
                         </div>
                         @error('name')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
                             <input name="email" type="email" class="form-control" id="" placeholder="Email" value="{{$user->email}}">
                         </div>
                         @error('email')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mật khẩu</label>
-                            <input name="password" type="password" class="form-control" id="" placeholder="Mật khẩu" value="{{$user->password}}">
+                            <input name="password" type="password" class="form-control" id="" placeholder="Mật khẩu">
                         </div>
                         @error('password')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
                             <input name="phone" type="text" class="form-control" id="" placeholder="SĐT" value="{{$user->phone}}">
                         </div>
                         @error('phone')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa chỉ</label>
@@ -71,7 +71,7 @@
 
                     <div class="card-footer">
                         <a href="{{ route('backend.users.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                        <button type="submit" class="btn btn-success">Cập Nhật</button>
+                        <button type="submit" class="btn btn-danger">Cập Nhật</button>
                     </div>
                 </form>
             </div>

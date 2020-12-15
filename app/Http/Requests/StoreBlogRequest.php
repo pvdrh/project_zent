@@ -26,8 +26,7 @@ class StoreBlogRequest extends FormRequest
         return [
             'title' => 'required|min:10',
             'img' => 'required|max:2048',
-            'content' => 'required|min:20',
-            'slug' => 'required'
+            'content' => 'required|min:20'
     ];
     }
 
@@ -45,8 +44,7 @@ class StoreBlogRequest extends FormRequest
         return [
             'title' => 'Tiêu đề',
             'img' => 'Ảnh',
-            'content' => 'Nội dung',
-            'slug' => 'Slug'
+            'content' => 'Nội dung'
         ];
     }
 }

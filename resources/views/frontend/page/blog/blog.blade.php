@@ -2,7 +2,11 @@
 
 @section('home')
       <!-- Start Bradcaump area -->
-      <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(frontend/images/banner/2.jpg) no-repeat scroll center center / cover ;">
+      <div class="ht__bradcaump__area" style="background: rgb(212,147,180);
+      background: -moz-radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+      background: -webkit-radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+      background: radial-gradient(circle, rgba(212,147,180,1) 26%, rgba(255,89,123,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d493b4",endColorstr="#ff597b",GradientType=1);">
         <div class="ht__bradcaump__wrap">
             <div class="container">
                 <div class="row">

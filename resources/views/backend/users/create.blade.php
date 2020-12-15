@@ -25,28 +25,28 @@
                             <input name="name" type="text" class="form-control" id="" placeholder="Tên người dùng">
                         </div>
                         @error('name')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
                             <input name="email" type="email" class="form-control" id="" placeholder="Email">
                         </div>
                         @error('email')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mật khẩu</label>
                             <input name="password" type="password" class="form-control" id="" placeholder="Mật khẩu">
                         </div>
                         @error('password')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
                             <input name="phone" type="text" class="form-control" id="" placeholder="SĐT">
                         </div>
                         @error('phone')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa chỉ</label>
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                         @error('role')
-                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-success">{{ $message }}</div>
+                        <div style="width:350px;height:50px;margin-top:5px" class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <!-- /.card-body -->

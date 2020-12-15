@@ -52,7 +52,7 @@ class PostController extends Controller
         $post->img = $path;
 
         $post->title = $request->title;
-        $post->slug = $request->slug;
+        $post->slug = \Illuminate\Support\Str::slug($request->get('title'));
         $post->content = $request->content;
         $save = $post->save();
 
@@ -98,7 +98,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->title = $request->get('title');
-        $post->slug = $request->get('slug');
+        $post->slug = \Illuminate\Support\Str::slug($request->get('title'));
         $post->content = $request->get('content');
 
         if ($request->hasFile('img')) {
